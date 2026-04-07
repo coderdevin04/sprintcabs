@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sprint Cabs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --teal: #006a61;
+    --teal-light: #27a094;
+    --teal-dim: #6bd8cb;
+    --dark: #001815;
+    --dark-2: #002f2a;
+    --surface: #f9f9ff;
+    --surface-low: #f0f3ff;
+    --surface-mid: #e7eeff;
+    --surface-high: #dee8ff;
+    --white: #ffffff;
+    --text: #111c2d;
+    --text-muted: #45474c;
+    --text-secondary: #515f74;
+    --gold: #fadfb8;
+    --gold-dim: #ddc39d;
+    --border: #c5c6cd;
+    --emerald: #10b981;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--text); }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(249,249,255,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(197,198,205,0.3);
+    box-shadow: 0 1px 20px rgba(0,0,0,0.04);
+  }
+  .nav-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 76px; padding: 0 2.5rem; max-width: 1400px; margin: 0 auto;
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--dark); letter-spacing: -0.03em; text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; letter-spacing: -0.01em; }
+  .nav-links a.active { color:var(--teal);font-weight:700;border-bottom:2px solid var(--teal);padding-bottom:2px; }
+  .nav-ctas { display: flex; gap: 1rem; align-items: center; }
+  .btn-ghost { background: none; border: none; font-family: inherit; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); cursor: pointer; transition: color 0.2s; }
+  .btn-ghost:hover { color: var(--dark); }
+  .btn-wa { background: var(--emerald); color: white; border: none; padding: 0.6rem 1.4rem; border-radius: 100px; font-family: inherit; font-size: 0.875rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-wa:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(16,185,129,0.3); }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 76px 1.5rem 0; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, #001815 0%, #002f2a 40%, #006a61 100%);
+  }
+  .hero-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(107,216,203,0.15) 0%, transparent 60%);
+  }
+  .hero-bg-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.45; mix-blend-mode: luminosity;
+  }
+  .hero-content { position: relative; z-index: 1; width: 100%; max-width: 1000px; text-align: center; }
+  .hero-badge {
+    display: inline-block; background: rgba(250,223,184,0.15); border: 1px solid rgba(250,223,184,0.3);
+    color: var(--gold); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 900;
+    color: white; letter-spacing: -0.04em; line-height: 0.9; margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--teal-dim); }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 1.1rem; max-width: 520px; margin: 0 auto 3rem; line-height: 1.6; }
+
+  /* SEARCH FORM */
+  .search-card {
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+    border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    max-width: 860px; margin: 0 auto;
+  }
+  .trip-tabs { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--surface-high); padding-bottom: 1rem; }
+  .trip-tab { background: none; border: none; font-family: inherit; font-size: 0.875rem; font-weight: 700; cursor: pointer; color: var(--text-muted); padding-bottom: 0.5rem; position: relative; transition: color 0.2s; }
+  .trip-tab.active { color: var(--teal); }
+  .trip-tab.active::after { content: ''; position: absolute; bottom: -1.05rem; left: 0; right: 0; height: 2px; background: var(--teal); border-radius: 2px; }
+  .search-grid { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: end; }
+  .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); padding-left: 0.5rem; }
+  .field-input {
+    height: 3.25rem; padding: 0 1rem; background: var(--surface-low); border: 2px solid transparent;
+    border-radius: 0.75rem; font-family: inherit; font-size: 0.9rem; color: var(--text);
+    transition: border-color 0.2s, background 0.2s; outline: none;
+  }
+  .field-input:focus { border-color: var(--teal); background: white; }
+  .btn-search {
+    height: 3.25rem; padding: 0 2rem; background: linear-gradient(135deg, var(--dark-2), var(--teal));
+    color: white; border: none; border-radius: 0.75rem; font-family: inherit;
+    font-size: 0.9rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,106,97,0.3);
+  }
+  .btn-search:hover { transform: scale(1.03); box-shadow: 0 8px 30px rgba(0,106,97,0.4); }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 0.75rem; }
+  .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--dark); letter-spacing: -0.03em; }
+  .section-sub { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-top: 0.75rem; }
+
+  /* FLEET CARDS */
+  .fleet-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .fleet-card { background: white; border-radius: 1.25rem; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+  .fleet-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,24,21,0.12); }
+  .fleet-card:nth-child(even) { margin-top: 3rem; }
+  .fleet-img { height: 180px; overflow: hidden; }
+  .fleet-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .fleet-card:hover .fleet-img img { transform: scale(1.1); }
+  .fleet-body { padding: 1.5rem; }
+  .fleet-body h3 { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .fleet-body p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+  .fleet-price { display: inline-block; background: rgba(0,106,97,0.08); color: var(--teal); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 100px; }
+
+  /* WHY US */
+  .why-section { background: var(--surface-low); }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; margin-top: 4rem; }
+  .why-item { display: flex; flex-direction: column; gap: 1rem; }
+  .why-icon { width: 3rem; height: 3rem; background: rgba(0,106,97,0.1); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; color: var(--teal); }
+  .why-item h3 { font-weight: 700; font-size: 1rem; }
+  .why-item p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ROUTES */
+  .routes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .route-card { position: relative; height: 260px; border-radius: 1.25rem; overflow: hidden; cursor: pointer; }
+  .route-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+  .route-card:hover img { transform: scale(1.1); }
+  .route-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;
+  }
+  .route-name { color: white; font-weight: 700; font-size: 1.1rem; }
+  .route-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; }
+  .route-type { color: rgba(255,255,255,0.65); font-size: 0.8rem; }
+  .route-price { color: var(--gold); font-weight: 700; font-size: 0.9rem; }
+
+  /* TESTIMONIALS */
+  .testi-section { background: var(--surface-mid); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .testi-card { background: white; border-radius: 1.25rem; padding: 2rem; display: flex; flex-direction: column; }
+  .stars { color: var(--teal); display: flex; gap: 0.2rem; margin-bottom: 1.25rem; }
+  .testi-card blockquote { font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem; flex: 1; }
+  .testi-author { font-weight: 700; font-size: 0.85rem; color: var(--text-muted); }
+
+  /* CTA BANNER */
+  .cta-section { padding: 2rem; }
+  .cta-banner {
+    max-width: 1200px; margin: 0 auto; border-radius: 2rem; overflow: hidden;
+    background: var(--dark-2); position: relative;
+  }
+  .cta-bg { position: absolute; inset: 0; }
+  .cta-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.25; }
+  .cta-content { position: relative; z-index: 1; padding: 5rem 3rem; text-align: center; }
+  .cta-content h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: white; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 2.5rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-white { background: white; color: var(--dark); border: none; padding: 1rem 2.5rem; border-radius: 0.75rem; font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-white:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,255,255,0.2); }
+  .btn-emerald { background: var(--emerald); color: white; border: none; padding: 1rem 2.5rem; border-radius: 0.75rem; font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: transform 0.2s; }
+  .btn-emerald:hover { transform: scale(1.05); }
+
+  /* FOOTER */
+  footer { background: #0f1a18; color: rgba(255,255,255,0.6); padding: 4rem 2rem 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: white; margin-bottom: 1rem; display: block; text-decoration: none; }
+  .footer-desc { font-size: 0.85rem; line-height: 1.6; }
+  .footer-col h4 { color: white; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-col ul a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--emerald); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
+  .footer-contact p { font-size: 0.875rem; }
+
+  /* FAB */
+  .fab {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    background: var(--emerald); color: white; width: 3.5rem; height: 3.5rem;
+    border-radius: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 8px 30px rgba(16,185,129,0.4); cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .fab:hover { transform: scale(1.1) translateY(-4px); box-shadow: 0 12px 40px rgba(16,185,129,0.5); }
+  .fab span.label { font-size: 0.45rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+
+  @media (max-width: 900px) {
+    .fleet-grid, .why-grid, .routes-grid, .testi-grid, .footer-grid { grid-template-columns: 1fr 1fr; }
+    .fleet-card:nth-child(even) { margin-top: 0; }
+    .search-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .fleet-grid, .routes-grid, .testi-grid, .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Sprint Cabs</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="cabs.html">Book Cab</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-ctas">
+      <button class="btn-ghost">Call</button>
+      <button class="btn-wa">WhatsApp</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img class="hero-bg-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBWS0ydmfSxVwky-6HDJCfQP8kKwnw5lURTqfNBBgl75SHGRW7_auysbD5G4CWS9-BwZBvRTz2MKOFTWeZ5dJte0voI8fkwr7Hg2IROqojJxmG2rBNmUAuQl7oQztaIzrXnaMO0pX8I0F4_PdsZfx866U-OvYY5ahKW7XDo2lGeQibqOL1SZjl8kWLqRQhWoItfsqKxt9wzlH-8KaQlw6VrVuDiGGnVPnd08B8f5-nrdXai1xs1_R7GYn_vH9_EE4T9mXhIS9hTEY" alt="Luxury SUV on coastal highway"/>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Premium Inter-City Travel</div>
+    <h1>Safar Apka<br/>Gaadi<em>Humari</em></h1>
+    <p>Intercity aur interstate travel ab easy—choose your car, set your route, and travel comfortably with verified drivers.</p>
+  </div>
+</section>
+
+<!-- TRUST SECTION -->
+<section style="background: white; padding: 4rem 2rem;">
+  <div class="section-inner">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center;">
+      <div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">500+</div>
+        <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500;">Happy Travelers</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Trusted by travelers across India</p>
+      </div>
+      <div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">30+</div>
+        <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500;">Verified Drivers</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Professionally vetted for safety</p>
+      </div>
+      <div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">4.9★</div>
+        <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500;">Google Rating</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Excellence in every journey</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET PREVIEW -->
+<section>
+  <div class="section-inner">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:0;">
+      <div>
+        <span class="section-tag">Your Comfort. Our Promise.</span>
+        <h2 class="section-heading"> PICK YOUR RIDE </h2>
+        <p class="section-sub" style="max-width:480px;">From solo escapes to family adventures. Choose a cab that fits your journey, not just your destination.</p>
+      </div>
+      <a href="cabs.html" style="color:var(--teal); font-weight:700; text-decoration:none; display:flex; align-items:center; gap:0.4rem; font-size:0.9rem;">View all models <span class="material-symbols-outlined" style="font-size:1.1rem;">trending_flat</span></a>
+    </div>
+    
+    <div class="fleet-grid" id="fleetGrid">
+      <!-- Fleet cards loaded from JSON -->
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon"><span class="material-symbols-outlined">payments</span></div>
+        <h3>Transparent Pricing</h3>
+        <p>No surprises. What you see is what you pay.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><span class="material-symbols-outlined">verified_user</span></div>
+        <h3>Verified Drivers</h3>
+        <p>Vetted professionals with years of inter-city driving experience.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><span class="material-symbols-outlined">support_agent</span></div>
+        <h3>24/7 Support</h3>
+        <p>Real humans available around the clock to assist your journey.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><span class="material-symbols-outlined">gpp_good</span></div>
+        <h3>No Hidden Charges</h3>
+        <p>Clean invoices with clear breakdowns of every rupee spent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR ROUTES -->
+<section>
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:0;">
+      <span class="section-tag">Most Booked</span>
+      <h2 class="section-heading">Popular Horizons.</h2>
+    </div>
+    <div class="routes-grid">
+      <div class="route-card">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPS375PueuCwncDUx8VlG_WKOWV4Y1uTflEBhJyQa37nn8AXqEDOrnpo0oa4pwH4d-XlW6YdFwLFoAL6Ivs9PM3uGGPclOVaWWVmPRUPfXSl1e2Tv8dxed0NVXknLRnj9bvAG-m4XD8sm5R1RR8dUb-2xMDfcDqwFg_-qO_iX0a4-uxCBB17Q0Mfv-xgo7vvcKkTAqslgT7w-dCzHpXwu9wHJtbbjpem1JrKnABVq4Fnc1h1V_mjad2OEvfhVoHXWs6PG-WEasen0" alt="Delhi to Agra"/>
+        <div class="route-overlay"><p class="route-name">Delhi to Agra</p><div class="route-meta"><span class="route-type">One-way trip</span><span class="route-price">from ₹2,499</span></div></div>
+      </div>
+      <div class="route-card">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRnJgO4oRuknrN6ZSwnNevCGTcsUfoBUALjrz4RZOhimdAHiqUbjFkR3b2IR3OW73-aOtAz9I-D-byhairg98f-b3Q6SYXtev7cyGgUvpGzNSoT44Jjc00LL54f_xeWi_a7F_OFuElEoeuoGzUxN4kCMh3N473uuEecR0FdfAmin2YdWr3k_i0C06ymP93vRM8noPJfwy1Z1V5liwZBS2lHdQ-zXi3XfcNDG-ZJu3OkBYu5Akdy-oNWkRYsCG3qzqXCWQ688p9KRY" alt="Jaipur to Delhi"/>
+        <div class="route-overlay"><p class="route-name">Jaipur to Delhi</p><div class="route-meta"><span class="route-type">Luxury sedan</span><span class="route-price">from ₹3,199</span></div></div>
+      </div>
+      <div class="route-card">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1w5vtKt1VRICOOrur88JdAk6CHtpqE2GWKvCea4DCsK4Snq35MBZ9Bu7e1FIlKRk3RYVl9IClHllW3y6l-z1Th4spsx9TOUMTWaq3L4oa-bnp8Xk7TGst09qG0VCIuW3cLlkpmbKU0kK9RmHmAHu1XOTCitHaG0Fcdtn6iYxgFvjZcaD7fhswGEdsgXRLVR7LiqCQLfkIVSgnM69waes-dVG8ig5e34rsjLqvjsm2oxmvkL8rKQeMZPRic7WifUNYWSahU3_VGns" alt="Mumbai to Pune"/>
+        <div class="route-overlay"><p class="route-name">Mumbai to Pune</p><div class="route-meta"><span class="route-type">Business Class</span><span class="route-price">from ₹1,899</span></div></div>
+      </div>
+      <div class="route-card">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVjRHKGgv-pvV_WaaBcboEi4-dgHmvi2yaic0XBhL9li2nTiPIeWx7vXgOM2yc_urRuQxnxDnho7oDD--rOsuLgWLaBNDmAO3wrQ8JYEg76v6MwOfeDef3eXc1FmNsLUW-bY94YKphLPn84NFXX6ag4nrkOhc0IGXEvHTBcig-vRUNSOU5wJJUB9nX8y0ltC8N5rBDENCRAW6ru7MRT5HVm-gw5Z4ZV7EbcShmYq-nI5JfbaYahDsydYa07RoZDLj5KTCf1Y" alt="Bangalore to Coorg"/>
+        <div class="route-overlay"><p class="route-name">Bangalore to Coorg</p><div class="route-meta"><span class="route-type">Outstation SUV</span><span class="route-price">from ₹4,599</span></div></div>
+      </div>
+      <div class="route-card">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBstpiD3EcVW_B0k-UTCz5aFKxZ7LH9otOXbmnCQwCk7v1YCKVT1NlEpJNiCgoH4KVs_bU62P80k5TN3GCCEWWWQGZElh8plXvWWgFTaw7T98Xj4MJgQpI8fNXTw7Dlpk48AUOLNPbb49vU1fvt4cT3rpyi1_HE5kBaRGcFBg3RVeZYIog-d3YbEY5_os8nBoTY8p6PT5WDcfpYmbpR89oOaVoSzRMTR7Big-Y3OR2omWt2VKOOXBvymlVxtEUiilAWlB5GPtquL4E" alt="Delhi to Rishikesh"/>
+        <div class="route-overlay"><p class="route-name">Delhi to Rishikesh</p><div class="route-meta"><span class="route-type">Religious tour</span><span class="route-price">from ₹2,899</span></div></div>
+      </div>
+      <div class="route-card">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbNrcDbBXoeeVh32ru3Wf8qLh3YRyH_NNurXYuZTvjdDgDSBvEULRoRU8MNnvvVYWGpQFE2Z4vJ4T94Qqxbv3O-f9Cnq7CG7wiID8jVMEPZI4p3UYaO4KC4MqT5jDvKgRdzLK9PdvNTplvGufV4Wu1ceJwI8y7PlR-pD_SJXBixJFhn_etI66kyY5wxZGCePppxGkQOLD8kQpsUBCM0jn61SCgmubgfUc7lyYua_8vypsMZWgFoSCPsVOUvGKK_zj8srwDSNo_iBU" alt="Pune to Goa"/>
+        <div class="route-overlay"><p class="route-name">Pune to Goa</p><div class="route-meta"><span class="route-type">Long distance</span><span class="route-price">from ₹8,999</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:0;">
+      <span class="section-tag">Traveler Stories</span>
+      <h2 class="section-heading">Voice of the Traveler.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The most seamless inter-city booking I've ever experienced. The driver arrived 10 minutes early and the vehicle was spotless."</blockquote>
+        <span class="testi-author">— Anita Sharma, Delhi</span>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Pricing was exactly what was quoted. No haggling with the driver for extra tolls or parking. Highly professional."</blockquote>
+        <span class="testi-author">— Rajesh Khanna, Mumbai</span>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The luxury SUV for our Coorg trip was brand new. The driver knew the best spots for photography along the way."</blockquote>
+        <span class="testi-author">— Dr. Priya Menon, Bangalore</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo">Sprint Cabs</a>
+        <p class="footer-desc">Handpicked cabs for every journey — city tours, outstation trips, or airport transfers. Book instantly with us.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cabs.html">Book Cab</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Connect</h4>
+        <p>support@navisslate.com</p>
+        <p>+91 8502879691</p>
+      </div>
+    </div>
+    <div class="fooster-bottom">
+      <span>© 2016 Sprint Cabs. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FAB -->
+<div class="fab">
+  <span class="material-symbols-outlined" style="font-size:1.3rem;">chat</span>
+  <span class="label">WhatsApp</span>
+</div>
+
+<script src="config.js"></script>
+<script src="common.js"></script>
+<script>
+  // Tab switcher
+  document.querySelectorAll('.trip-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.trip-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Load and render fleet from JSON
+  document.addEventListener('DOMContentLoaded', async function() {
+    try {
+      const response = await fetch('data/vehicles.json');
+      const data = await response.json();
+      const fleetGrid = document.getElementById('fleetGrid');
+      
+      fleetGrid.innerHTML = data.vehicles.map(vehicle => `
+        <div class="fleet-card">
+          <div class="fleet-img">
+            <img src="${vehicle.photo}" alt="${vehicle.name}"/>
+          </div>
+          <div class="fleet-body">
+            <h3>${vehicle.name}</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">${vehicle.subtitle}</p>
+            <p>${vehicle.description}</p>
+            <span class="fleet-price">₹${vehicle.price}${vehicle.priceUnit}</span>
+          </div>
+        </div>
+      `).join('');
+    } catch (error) {
+      console.error('Error loading fleet:', error);
+      document.getElementById('fleetGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Error loading fleet. Please try again later.</p>';
+    }
+  });
+</script>
+</body>
+</html>

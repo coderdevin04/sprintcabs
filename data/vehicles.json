@@ -1,0 +1,72 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "name": "Slate Executive S",
+      "subtitle": "Long-Range Luxury Edition",
+      "description": "Experience pure electric luxury with our flagship sedan. Perfect for long-range journeys with premium comfort.",
+      "price": 50,
+      "priceUnit": "per km",
+      "seats": 4,
+      "baggage": 3,
+      "feature": "Electric",
+      "tag": "Verified",
+      "tagType": "gold",
+      "photo": "photos/Crysta.jpg",
+      "seatIcon": "airline_seat_recline_normal",
+      "baggageIcon": "luggage",
+      "featureIcon": "ev_station"
+    },
+    {
+      "id": 2,
+      "name": "Atlas Rover X",
+      "subtitle": "All-Terrain Performance",
+      "description": "Spacious hybrid SUV built for comfort and versatility. Ideal for larger groups and diverse terrain.",
+      "price": 22,
+      "priceUnit": "per km",
+      "seats": 7,
+      "baggage": 5,
+      "feature": "Hybrid",
+      "tag": "Comfortable",
+      "tagType": "teal",
+      "photo": "photos/Etios.jpg",
+      "seatIcon": "group",
+      "baggageIcon": "shopping_bag",
+      "featureIcon": "local_gas_station"
+    },
+    {
+      "id": 3,
+      "name": "Phantom S Class",
+      "subtitle": "Ultimate Chauffeur Comfort",
+      "description": "Supreme luxury and sophistication in every drive. The ultimate choice for executive travel and special occasions.",
+      "price": 40,
+      "priceUnit": "per km",
+      "seats": 4,
+      "baggage": 4,
+      "feature": "V8 Turbo",
+      "tag": "",
+      "tagType": "",
+      "photo": "photos/Crysta.jpg",
+      "seatIcon": "chair",
+      "baggageIcon": "work",
+      "featureIcon": "toys"
+    },
+    {
+      "id": 4,
+      "name": "Horizon Transit",
+      "subtitle": "Group Travel Specialist",
+      "description": "The perfect solution for group journeys. Spacious, comfortable, and economical for large parties.",
+      "price": 18,
+      "priceUnit": "per km",
+      "seats": 12,
+      "baggage": 10,
+      "feature": "Diesel",
+      "tag": "Popular",
+      "tagType": "teal",
+      "photo": "photos/Etios.jpg",
+      "seatIcon": "groups",
+      "baggageIcon": "package",
+      "featureIcon": "eco"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.log
+*.swp
+*.swo
+.env
+.env.local
+.cache/
+dist/
+build/
+*.zip
+*.rar
+raw/

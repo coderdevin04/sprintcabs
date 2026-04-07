@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Cabs | Sprint Cabs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  :root { --teal:#006a61;--dark:#001815;--dark-2:#002f2a;--surface:#f9f9ff;--surface-low:#f0f3ff;--surface-mid:#e7eeff;--surface-high:#dee8ff;--text:#111c2d;--text-muted:#45474c;--text-secondary:#515f74;--gold:#fadfb8;--border:#c5c6cd;--emerald:#10b981; }
+  * { margin:0;padding:0;box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text); }
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle; }
+  nav { position:fixed;top:0;width:100%;z-index:100;background:rgba(249,249,255,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(197,198,205,0.3);box-shadow:0 1px 20px rgba(0,0,0,0.04); }
+  .nav-inner { display:flex;justify-content:space-between;align-items:center;height:76px;padding:0 2.5rem;max-width:1400px;margin:0 auto; }
+  .logo { font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--dark);letter-spacing:-0.03em;text-decoration:none; }
+  .nav-links { display:flex;gap:2.5rem;align-items:center; }
+  .nav-links a { font-size:0.875rem;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:color 0.2s; }
+  .nav-links a.active { color:var(--teal);font-weight:700;border-bottom:2px solid var(--teal);padding-bottom:2px; }
+  .nav-ctas { display:flex;gap:1rem;align-items:center; }
+  .btn-ghost { background:none;border:none;font-family:inherit;font-size:0.875rem;font-weight:500;color:var(--text-secondary);cursor:pointer; }
+  .btn-wa { background:var(--emerald);color:white;border:none;padding:0.6rem 1.4rem;border-radius:100px;font-family:inherit;font-size:0.875rem;font-weight:700;cursor:pointer;transition:transform 0.2s; }
+  .btn-wa:hover { transform:scale(1.05); }
+  main { padding:7rem 2rem 6rem;max-width:1400px;margin:0 auto; }
+  .page-header { margin-bottom:3rem; }
+  .page-header h1 { font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:var(--dark);letter-spacing:-0.04em;margin-bottom:0.75rem; }
+  .page-header p { color:var(--text-secondary);font-size:1.05rem;max-width:540px;line-height:1.6; }
+  .layout { display:flex;gap:3rem;align-items:flex-start; }
+  .sidebar { width:260px;flex-shrink:0;position:sticky;top:96px; }
+  .filter-group { margin-bottom:2rem; }
+  .filter-label { font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem;display:block; }
+  .range-input { width:100%;accent-color:var(--teal);height:4px; }
+  .range-vals { display:flex;justify-content:space-between;margin-top:0.75rem;font-size:0.8rem;font-weight:500;color:var(--text-secondary); }
+  .check-item { display:flex;align-items:center;gap:0.75rem;cursor:pointer;margin-bottom:0.75rem; }
+  .check-item input { accent-color:var(--teal);width:1rem;height:1rem; }
+  .check-item span { font-size:0.875rem;color:var(--text); }
+  .cap-btns { display:flex;gap:0.5rem;flex-wrap:wrap; }
+  .cap-btn { padding:0.4rem 1rem;border-radius:0.5rem;border:1px solid var(--border);background:white;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s; }
+  .cap-btn.active { background:var(--dark-2);color:white;border-color:var(--dark-2); }
+  .grid { flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem; }
+  .v-card { background:white;border-radius:1.25rem;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:transform 0.3s,box-shadow 0.3s; }
+  .v-card:hover { transform:translateY(-6px);box-shadow:0 16px 50px rgba(0,24,21,0.1); }
+  .v-img { position:relative;aspect-ratio:16/10;overflow:hidden; }
+  .v-img img { width:100%;height:100%;object-fit:cover;transition:transform 0.6s; }
+  .v-card:hover .v-img img { transform:scale(1.06); }
+  .v-tag { position:absolute;top:1rem;left:1rem;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.8rem;border-radius:0.35rem; }
+  .tag-gold { background:rgba(250,223,184,0.9);color:#7a5c1e; }
+  .tag-teal { background:var(--teal);color:white; }
+  .v-body { padding:1.5rem; }
+  .v-header { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem; }
+  .v-name { font-weight:800;font-size:1.1rem;color:var(--dark); }
+  .v-sub { font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem; }
+  .v-price-block { text-align:right; }
+  .v-price-num { font-size:1.4rem;font-weight:900;color:var(--teal); }
+  .v-price-unit { font-size:0.65rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;display:block; }
+  .v-specs-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-bottom:1.25rem; }
+  .v-spec-box { display:flex;flex-direction:column;align-items:center;padding:0.6rem;border-radius:0.625rem;background:var(--surface-low); }
+  .v-spec-box .material-symbols-outlined { font-size:1.2rem;color:var(--teal);margin-bottom:0.25rem; }
+  .v-spec-box span.lbl { font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted); }
+  .v-actions { display:flex;gap:0.75rem; }
+  .btn-select { flex:1;padding:0.9rem;background:linear-gradient(135deg,var(--dark-2),var(--teal));color:white;border:none;border-radius:0.75rem;font-family:inherit;font-size:0.875rem;font-weight:700;cursor:pointer;transition:opacity 0.2s,transform 0.2s; }
+  .btn-select:hover { opacity:0.9;transform:scale(1.02); }
+  .btn-info { width:3.25rem;height:3.25rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;border:1px solid var(--border);background:white;cursor:pointer;transition:background 0.2s; }
+  .btn-info:hover { background:var(--surface-low); }
+  .fab { position:fixed;bottom:2rem;right:2rem;z-index:200;background:var(--emerald);color:white;width:3.5rem;height:3.5rem;border-radius:100%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(16,185,129,0.4);cursor:pointer;transition:transform 0.3s; }
+  .fab:hover { transform:scale(1.1) translateY(-4px); }
+  footer { background:#0f1a18;color:rgba(255,255,255,0.5);padding:2.5rem;text-align:center;font-size:0.85rem; }
+  footer a { color:rgba(255,255,255,0.5);text-decoration:none; }
+  .modal-overlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:300; }
+  .modal-overlay.active { display:flex; }
+  .modal-content { background:white;border-radius:1.25rem;padding:2rem;width:90%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,0.2); }
+  .modal-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem; }
+  .modal-header h2 { font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark);margin:0; }
+  .modal-close { background:none;border:none;font-size:1.5rem;color:var(--text-muted);cursor:pointer; }
+  .form-group { margin-bottom:1.25rem; }
+  .form-label { display:block;font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:0.5rem; }
+  .form-input { width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:0.75rem;font-family:inherit;font-size:0.875rem;color:var(--text); }
+  .form-input:focus { outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,106,97,0.1); }
+  .vehicle-info { background:var(--surface-low);padding:1rem;border-radius:0.75rem;margin-bottom:1.25rem;border-left:4px solid var(--teal); }
+  .vehicle-info p { font-size:0.875rem;color:var(--text);margin:0.25rem 0; }
+  .vehicle-info strong { color:var(--dark); }
+  .modal-actions { display:flex;gap:1rem;margin-top:1.5rem; }
+  .btn-cancel { flex:1;padding:0.9rem;background:var(--surface-low);border:1px solid var(--border);color:var(--text);border-radius:0.75rem;font-family:inherit;font-weight:700;cursor:pointer;transition:all 0.2s; }
+  .btn-cancel:hover { background:var(--surface-mid); }
+  .btn-submit { flex:1;padding:0.9rem;background:var(--emerald);color:white;border:none;border-radius:0.75rem;font-family:inherit;font-weight:700;cursor:pointer;transition:all 0.2s; }
+  .btn-submit:hover { opacity:0.9;transform:scale(1.02); }
+  @media (max-width:900px) { .layout { flex-direction:column; } .sidebar { width:100%;position:static; } .grid { grid-template-columns:1fr; } .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Sprint Cabs</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cabs.html" class="active">Book Cab</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-ctas">
+      <button class="btn-ghost">Call</button>
+      <button class="btn-wa">WhatsApp</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h1>Our Cabs Services</h1>
+    <p>Select from our curated collection of premium vehicles, maintained to the highest standards for your safety and comfort.</p>
+  </div>
+  <div class="layout">
+    <!-- VEHICLE GRID -->
+    <div class="grid" id="vehicleGrid">
+      <!-- Vehicles will be loaded here from JSON -->
+    </div>
+  </div>
+</main>
+
+<div class="fab"><span class="material-symbols-outlined">chat</span></div>
+
+<!-- Booking Modal -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Book Your Cab</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    
+    <div class="vehicle-info" id="vehicleInfo">
+      <!-- Vehicle details will be populated here -->
+    </div>
+
+    <form id="bookingForm" onsubmit="handleBooking(event)">
+      <div class="form-group">
+        <label class="form-label">Pickup Location *</label>
+        <input type="text" class="form-input" id="pickupLocation" placeholder="e.g., Jaipur Railway Station" required/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Drop Location *</label>
+        <input type="text" class="form-input" id="dropLocation" placeholder="e.g., Udaipur City Palace" required/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Travel Date *</label>
+        <input type="date" class="form-input" id="travelDate" required/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Number of Passengers *</label>
+        <input type="number" class="form-input" id="passengers" min="1" placeholder="e.g., 4" required/>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn-submit">Send via WhatsApp</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer><p>© 2016 Sprint Cabs · <a href="index.html">Home</a></p></footer>
+<script src="config.js"></script>
+<script src="common.js"></script>
+<script>
+// Modal management
+let selectedVehicleData = {};
+
+function openBookingModal(event, vehicleName, price, seats) {
+  event.preventDefault();
+  selectedVehicleData = { vehicleName, price, seats };
+  
+  // Display vehicle info in modal
+  document.getElementById('vehicleInfo').innerHTML = `
+    <p><strong>Car:</strong> ${vehicleName}</p>
+    <p><strong>Price:</strong> ₹${price}/Km</p>
+    <p><strong>Seats:</strong> ${seats}</p>
+  `;
+  
+  // Show modal
+  document.getElementById('bookingModal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('bookingModal').classList.remove('active');
+  document.getElementById('bookingForm').reset();
+}
+
+function handleBooking(event) {
+  event.preventDefault();
+  
+  const pickup = document.getElementById('pickupLocation').value;
+  const drop = document.getElementById('dropLocation').value;
+  const date = document.getElementById('travelDate').value;
+  const passengers = document.getElementById('passengers').value;
+  
+  // Format date for display
+  const dateObj = new Date(date);
+  const formattedDate = dateObj.toISOString().split('T')[0];
+  
+  // Create WhatsApp message
+  const message = `Hi SprintCabs! I want to book a cab.\n\nCar: *${selectedVehicleData.vehicleName}*\nPickup: ${pickup}\nDrop: ${drop}\nDate: ${formattedDate}\nPassengers: ${passengers} passengers\n\nPlease share the fare and confirm availability.`;
+  
+  // Encode message for URL
+  const encodedMessage = encodeURIComponent(message);
+  
+  // Get WhatsApp number from config (or use default)
+  const whatsappNumber = window.WHATSAPP_NUMBER || '918502879624'; // Replace with actual number
+  
+  // Open WhatsApp
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  window.open(whatsappURL, '_blank');
+  
+  // Close modal
+  closeModal();
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('bookingModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeModal();
+    }
+  });
+});
+
+// Load and render vehicles from JSON
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    const response = await fetch('data/vehicles.json');
+    const data = await response.json();
+    const vehicleGrid = document.getElementById('vehicleGrid');
+    
+    vehicleGrid.innerHTML = data.vehicles.map(vehicle => `
+      <div class="v-card">
+        <div class="v-img">
+          <img src="${vehicle.photo}" alt="${vehicle.name}"/>
+          ${vehicle.tag ? `<span class="v-tag tag-${vehicle.tagType}">${vehicle.tag}</span>` : ''}
+        </div>
+        <div class="v-body">
+          <div class="v-header">
+            <div>
+              <p class="v-name">${vehicle.name}</p>
+              <p class="v-sub">${vehicle.subtitle}</p>
+            </div>
+            <div class="v-price-block">
+              <span class="v-price-num">₹${vehicle.price}</span>
+              <span class="v-price-unit">${vehicle.priceUnit}</span>
+            </div>
+          </div>
+          <div class="v-specs-grid">
+            <div class="v-spec-box">
+              <span class="material-symbols-outlined">${vehicle.seatIcon}</span>
+              <span class="lbl">${vehicle.seats} Seats</span>
+            </div>
+            <div class="v-spec-box">
+              <span class="material-symbols-outlined">${vehicle.baggageIcon}</span>
+              <span class="lbl">${vehicle.baggage} Bags</span>
+            </div>
+            <div class="v-spec-box">
+              <span class="material-symbols-outlined">${vehicle.featureIcon}</span>
+              <span class="lbl">${vehicle.feature}</span>
+            </div>
+          </div>
+          <div class="v-actions">
+            <button class="btn-select" onclick="openBookingModal(event, '${vehicle.name}', '${vehicle.price}', '${vehicle.seats}')">Select Vehicle</button>
+            <button class="btn-info">
+              <span class="material-symbols-outlined">info</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  } catch (error) {
+    console.error('Error loading vehicles:', error);
+    document.getElementById('vehicleGrid').innerHTML = '<p>Error loading vehicles. Please try again later.</p>';
+  }
+});
+</script>
+</body>
+</html>
