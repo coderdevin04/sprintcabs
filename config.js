@@ -1,19 +1,19 @@
 /**
- * Navis Slate Configuration
+ * Sprint Cabs Configuration
  * Update this file with your business information
  */
 
 const CONFIG = {
   // Business Information
-  businessName: 'Navis Slate',
-  businessEmail: 'support@navisslate.com',
-  businessPhone: '+91 1800-SLATE-01',
+  businessName: 'Sprint Cabs',
+  businessEmail: 'support@sprintcabs.com',
+  businessPhone: '+91 8502879691',
   businessLocation: 'Jaipur, India',
   
   // WhatsApp Configuration
   whatsapp: {
-    phoneNumber: '919876543210', // Country code + Number without +
-    message: 'Hi! I\'m interested in your travel services.' // Default message
+    phoneNumber: '918502879691', // Country code + Number without +
+    message: 'Hi! I\'m interested in Sprint Cabs travel services.' // Default message
   },
   
   // Pricing Configuration
@@ -26,12 +26,12 @@ const CONFIG = {
   
   // Popular Routes
   routes: [
-    { from: 'Delhi', to: 'Agra', price: 2499 },
+    { from: 'Jaipur', to: 'Udaipur', price: 3299 },
+    { from: 'Jaipur', to: 'Jodhpur', price: 2899 },
+    { from: 'Jaipur', to: 'Jaisalmer', price: 4499 },
     { from: 'Jaipur', to: 'Delhi', price: 3199 },
-    { from: 'Mumbai', to: 'Pune', price: 1899 },
-    { from: 'Bangalore', to: 'Coorg', price: 4599 },
-    { from: 'Delhi', to: 'Rishikesh', price: 2899 },
-    { from: 'Pune', to: 'Goa', price: 8999 }
+    { from: 'Jaipur', to: 'Agra', price: 2999 },
+    { from: 'Jaipur', to: 'Pushkar', price: 899 }
   ],
   
   // Vehicle Information
@@ -76,10 +76,10 @@ const CONFIG = {
   
   // Social Media Links
   social: {
-    whatsapp: 'https://wa.me/919876543210',
-    instagram: 'https://instagram.com/navisslate',
-    facebook: 'https://facebook.com/navisslate',
-    twitter: 'https://twitter.com/navisslate'
+    whatsapp: 'https://wa.me/918502879691',
+    instagram: 'https://instagram.com/sprintcabs',
+    facebook: 'https://facebook.com/sprintcabs',
+    twitter: 'https://twitter.com/sprintcabs'
   },
   
   // Hours of Operation
@@ -107,10 +107,10 @@ const CONFIG = {
   
   // SEO Configuration
   seo: {
-    siteName: 'Navis Slate',
-    siteDescription: 'Premium inter-city travel service with luxury vehicles and professional drivers.',
-    keywords: 'travel, inter-city, luxury cars, transportation, cab service',
-    author: 'Navis Slate'
+    siteName: 'Sprint Cabs',
+    siteDescription: 'Premium inter-city travel service with luxury vehicles and professional drivers in Rajasthan.',
+    keywords: 'inter-city travel, Rajasthan cabs, luxury travel, transportation, cab service, Jaipur',
+    author: 'Sprint Cabs'
   }
 };
 

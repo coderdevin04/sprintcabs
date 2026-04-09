@@ -47,9 +47,9 @@
   .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; letter-spacing: -0.01em; }
   .nav-links a.active { color:var(--teal);font-weight:700;border-bottom:2px solid var(--teal);padding-bottom:2px; }
   .nav-ctas { display: flex; gap: 1rem; align-items: center; }
-  .btn-ghost { background: none; border: none; font-family: inherit; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); cursor: pointer; transition: color 0.2s; }
+  .btn-ghost { background: none; border: none; font-family: inherit; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); cursor: pointer; transition: color 0.2s; min-height: 44px; padding: 0.5rem 1rem; }
   .btn-ghost:hover { color: var(--dark); }
-  .btn-wa { background: var(--emerald); color: white; border: none; padding: 0.6rem 1.4rem; border-radius: 100px; font-family: inherit; font-size: 0.875rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-wa { background: var(--emerald); color: white; border: none; padding: 0.6rem 1.4rem; border-radius: 100px; font-family: inherit; font-size: 0.875rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; min-height: 44px; }
   .btn-wa:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(16,185,129,0.3); }
 
   /* HERO */
@@ -97,8 +97,8 @@
   .field-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); padding-left: 0.5rem; }
   .field-input {
     height: 3.25rem; padding: 0 1rem; background: var(--surface-low); border: 2px solid transparent;
-    border-radius: 0.75rem; font-family: inherit; font-size: 0.9rem; color: var(--text);
-    transition: border-color 0.2s, background 0.2s; outline: none;
+    border-radius: 0.75rem; font-family: inherit; font-size: 16px; color: var(--text);
+    transition: border-color 0.2s, background 0.2s; outline: none; min-height: 48px;
   }
   .field-input:focus { border-color: var(--teal); background: white; }
   .btn-search {
@@ -115,6 +115,9 @@
   .section-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 0.75rem; }
   .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--dark); letter-spacing: -0.03em; }
   .section-sub { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-top: 0.75rem; }
+
+  /* TRUST GRID */
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center; }
 
   /* FLEET CARDS */
   .fleet-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
@@ -191,7 +194,7 @@
 
   /* FAB */
   .fab {
-    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    position: fixed; bottom: 1.5rem; right: 2rem; z-index: 9999;
     background: var(--emerald); color: white; width: 3.5rem; height: 3.5rem;
     border-radius: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
     box-shadow: 0 8px 30px rgba(16,185,129,0.4); cursor: pointer;
@@ -204,10 +207,22 @@
     .fleet-grid, .why-grid, .routes-grid, .testi-grid, .footer-grid { grid-template-columns: 1fr 1fr; }
     .fleet-card:nth-child(even) { margin-top: 0; }
     .search-grid { grid-template-columns: 1fr; }
+    .btn-search { width: 100%; margin-top: 0.5rem; }
     .nav-links { display: none; }
   }
   @media (max-width: 600px) {
     .fleet-grid, .routes-grid, .testi-grid, .footer-grid { grid-template-columns: 1fr; }
+    .btn-ghost { display: none; }
+    .btn-wa { width: 100%; }
+    .why-grid { grid-template-columns: 1fr; }
+    .search-grid { grid-template-columns: 1fr; }
+    .btn-search { width: 100%; margin-top: 0.5rem; }
+    .fab { bottom: 1.5rem; right: 1rem; }
+  }
+  @media (max-width: 600px) {
+    [style*="grid-template-columns: repeat(3, 1fr)"] {
+      grid-template-columns: 1fr !important;
+    }
   }
 </style>
 </head>
@@ -220,7 +235,6 @@
       <a href="index.html" class="active">Home</a>
       <a href="cabs.html">Book Cab</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
     </div>
     <div class="nav-ctas">
       <button class="btn-ghost">Call</button>
@@ -244,7 +258,7 @@
 <!-- TRUST SECTION -->
 <section style="background: white; padding: 4rem 2rem;">
   <div class="section-inner">
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center;">
+    <div class="trust-grid">
       <div>
         <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">500+</div>
         <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500;">Happy Travelers</p>
@@ -319,24 +333,24 @@
     </div>
     <div class="routes-grid">
       <div class="route-card">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPS375PueuCwncDUx8VlG_WKOWV4Y1uTflEBhJyQa37nn8AXqEDOrnpo0oa4pwH4d-XlW6YdFwLFoAL6Ivs9PM3uGGPclOVaWWVmPRUPfXSl1e2Tv8dxed0NVXknLRnj9bvAG-m4XD8sm5R1RR8dUb-2xMDfcDqwFg_-qO_iX0a4-uxCBB17Q0Mfv-xgo7vvcKkTAqslgT7w-dCzHpXwu9wHJtbbjpem1JrKnABVq4Fnc1h1V_mjad2OEvfhVoHXWs6PG-WEasen0" alt="Delhi to Agra"/>
-        <div class="route-overlay"><p class="route-name">Delhi to Agra</p><div class="route-meta"><span class="route-type">One-way trip</span><span class="route-price">from ₹2,499</span></div></div>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPS375PueuCwncDUx8VlG_WKOWV4Y1uTflEBhJyQa37nn8AXqEDOrnpo0oa4pwH4d-XlW6YdFwLFoAL6Ivs9PM3uGGPclOVaWWVmPRUPfXSl1e2Tv8dxed0NVXknLRnj9bvAG-m4XD8sm5R1RR8dUb-2xMDfcDqwFg_-qO_iX0a4-uxCBB17Q0Mfv-xgo7vvcKkTAqslgT7w-dCzHpXwu9wHJtbbjpem1JrKnABVq4Fnc1h1V_mjad2OEvfhVoHXWs6PG-WEasen0" alt="Jaipur to Udaipur"/>
+        <div class="route-overlay"><p class="route-name">Jaipur to Udaipur</p><div class="route-meta"><span class="route-type">Luxury getaway</span><span class="route-price">from ₹3,299</span></div></div>
       </div>
       <div class="route-card">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRnJgO4oRuknrN6ZSwnNevCGTcsUfoBUALjrz4RZOhimdAHiqUbjFkR3b2IR3OW73-aOtAz9I-D-byhairg98f-b3Q6SYXtev7cyGgUvpGzNSoT44Jjc00LL54f_xeWi_a7F_OFuElEoeuoGzUxN4kCMh3N473uuEecR0FdfAmin2YdWr3k_i0C06ymP93vRM8noPJfwy1Z1V5liwZBS2lHdQ-zXi3XfcNDG-ZJu3OkBYu5Akdy-oNWkRYsCG3qzqXCWQ688p9KRY" alt="Jaipur to Delhi"/>
-        <div class="route-overlay"><p class="route-name">Jaipur to Delhi</p><div class="route-meta"><span class="route-type">Luxury sedan</span><span class="route-price">from ₹3,199</span></div></div>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRnJgO4oRuknrN6ZSwnNevCGTcsUfoBUALjrz4RZOhimdAHiqUbjFkR3b2IR3OW73-aOtAz9I-D-byhairg98f-b3Q6SYXtev7cyGgUvpGzNSoT44Jjc00LL54f_xeWi_a7F_OFuElEoeuoGzUxN4kCMh3N473uuEecR0FdfAmin2YdWr3k_i0C06ymP93vRM8noPJfwy1Z1V5liwZBS2lHdQ-zXi3XfcNDG-ZJu3OkBYu5Akdy-oNWkRYsCG3qzqXCWQ688p9KRY" alt="Jaipur to Jodhpur"/>
+        <div class="route-overlay"><p class="route-name">Jaipur to Jodhpur</p><div class="route-meta"><span class="route-type">Blue city explorer</span><span class="route-price">from ₹2,899</span></div></div>
       </div>
       <div class="route-card">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1w5vtKt1VRICOOrur88JdAk6CHtpqE2GWKvCea4DCsK4Snq35MBZ9Bu7e1FIlKRk3RYVl9IClHllW3y6l-z1Th4spsx9TOUMTWaq3L4oa-bnp8Xk7TGst09qG0VCIuW3cLlkpmbKU0kK9RmHmAHu1XOTCitHaG0Fcdtn6iYxgFvjZcaD7fhswGEdsgXRLVR7LiqCQLfkIVSgnM69waes-dVG8ig5e34rsjLqvjsm2oxmvkL8rKQeMZPRic7WifUNYWSahU3_VGns" alt="Mumbai to Pune"/>
-        <div class="route-overlay"><p class="route-name">Mumbai to Pune</p><div class="route-meta"><span class="route-type">Business Class</span><span class="route-price">from ₹1,899</span></div></div>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1w5vtKt1VRICOOrur88JdAk6CHtpqE2GWKvCea4DCsK4Snq35MBZ9Bu7e1FIlKRk3RYVl9IClHllW3y6l-z1Th4spsx9TOUMTWaq3L4oa-bnp8Xk7TGst09qG0VCIuW3cLlkpmbKU0kK9RmHmAHu1XOTCitHaG0Fcdtn6iYxgFvjZcaD7fhswGEdsgXRLVR7LiqCQLfkIVSgnM69waes-dVG8ig5e34rsjLqvjsm2oxmvkL8rKQeMZPRic7WifUNYWSahU3_VGns" alt="Jaipur to Jaisalmer"/>
+        <div class="route-overlay"><p class="route-name">Jaipur to Jaisalmer</p><div class="route-meta"><span class="route-type">Desert adventure</span><span class="route-price">from ₹4,499</span></div></div>
       </div>
       <div class="route-card">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVjRHKGgv-pvV_WaaBcboEi4-dgHmvi2yaic0XBhL9li2nTiPIeWx7vXgOM2yc_urRuQxnxDnho7oDD--rOsuLgWLaBNDmAO3wrQ8JYEg76v6MwOfeDef3eXc1FmNsLUW-bY94YKphLPn84NFXX6ag4nrkOhc0IGXEvHTBcig-vRUNSOU5wJJUB9nX8y0ltC8N5rBDENCRAW6ru7MRT5HVm-gw5Z4ZV7EbcShmYq-nI5JfbaYahDsydYa07RoZDLj5KTCf1Y" alt="Bangalore to Coorg"/>
-        <div class="route-overlay"><p class="route-name">Bangalore to Coorg</p><div class="route-meta"><span class="route-type">Outstation SUV</span><span class="route-price">from ₹4,599</span></div></div>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVjRHKGgv-pvV_WaaBcboEi4-dgHmvi2yaic0XBhL9li2nTiPIeWx7vXgOM2yc_urRuQxnxDnho7oDD--rOsuLgWLaBNDmAO3wrQ8JYEg76v6MwOfeDef3eXc1FmNsLUW-bY94YKphLPn84NFXX6ag4nrkOhc0IGXEvHTBcig-vRUNSOU5wJJUB9nX8y0ltC8N5rBDENCRAW6ru7MRT5HVm-gw5Z4ZV7EbcShmYq-nI5JfbaYahDsydYa07RoZDLj5KTCf1Y" alt="Jaipur to Delhi"/>
+        <div class="route-overlay"><p class="route-name">Jaipur to Delhi</p><div class="route-meta"><span class="route-type">Express transfer</span><span class="route-price">from ₹3,199</span></div></div>
       </div>
       <div class="route-card">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBstpiD3EcVW_B0k-UTCz5aFKxZ7LH9otOXbmnCQwCk7v1YCKVT1NlEpJNiCgoH4KVs_bU62P80k5TN3GCCEWWWQGZElh8plXvWWgFTaw7T98Xj4MJgQpI8fNXTw7Dlpk48AUOLNPbb49vU1fvt4cT3rpyi1_HE5kBaRGcFBg3RVeZYIog-d3YbEY5_os8nBoTY8p6PT5WDcfpYmbpR89oOaVoSzRMTR7Big-Y3OR2omWt2VKOOXBvymlVxtEUiilAWlB5GPtquL4E" alt="Delhi to Rishikesh"/>
-        <div class="route-overlay"><p class="route-name">Delhi to Rishikesh</p><div class="route-meta"><span class="route-type">Religious tour</span><span class="route-price">from ₹2,899</span></div></div>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBstpiD3EcVW_B0k-UTCz5aFKxZ7LH9otOXbmnCQwCk7v1YCKVT1NlEpJNiCgoH4KVs_bU62P80k5TN3GCCEWWWQGZElh8plXvWWgFTaw7T98Xj4MJgQpI8fNXTw7Dlpk48AUOLNPbb49vU1fvt4cT3rpyi1_HE5kBaRGcFBg3RVeZYIog-d3YbEY5_os8nBoTY8p6PT5WDcfpYmbpR89oOaVoSzRMTR7Big-Y3OR2omWt2VKOOXBvymlVxtEUiilAWlB5GPtquL4E" alt="Jaipur to Agra"/>
+        <div class="route-overlay"><p class="route-name">Jaipur to Agra</p><div class="route-meta"><span class="route-type">Taj Mahal trip</span><span class="route-price">from ₹2,999</span></div></div>
       </div>
       <div class="route-card">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbNrcDbBXoeeVh32ru3Wf8qLh3YRyH_NNurXYuZTvjdDgDSBvEULRoRU8MNnvvVYWGpQFE2Z4vJ4T94Qqxbv3O-f9Cnq7CG7wiID8jVMEPZI4p3UYaO4KC4MqT5jDvKgRdzLK9PdvNTplvGufV4Wu1ceJwI8y7PlR-pD_SJXBixJFhn_etI66kyY5wxZGCePppxGkQOLD8kQpsUBCM0jn61SCgmubgfUc7lyYua_8vypsMZWgFoSCPsVOUvGKK_zj8srwDSNo_iBU" alt="Pune to Goa"/>
@@ -356,18 +370,18 @@
     <div class="testi-grid">
       <div class="testi-card">
         <div class="stars">★★★★★</div>
-        <blockquote>"The most seamless inter-city booking I've ever experienced. The driver arrived 10 minutes early and the vehicle was spotless."</blockquote>
-        <span class="testi-author">— Anita Sharma, Delhi</span>
+        <blockquote>"Booked last minute for Jaipur airport drop. Driver was there 10 mins early, car was clean, fare was exactly what was quoted."</blockquote>
+        <span class="testi-author">— Amit Verma, Jaipur</span>
       </div>
       <div class="testi-card">
         <div class="stars">★★★★★</div>
-        <blockquote>"Pricing was exactly what was quoted. No haggling with the driver for extra tolls or parking. Highly professional."</blockquote>
-        <span class="testi-author">— Rajesh Khanna, Mumbai</span>
+        <blockquote>"Did Jaipur to Jodhpur in an Innova Crysta. Comfortable ride, driver knew the highway well, no nonsense."</blockquote>
+        <span class="testi-author">— Sanjay Mehta, Delhi</span>
       </div>
       <div class="testi-card">
         <div class="stars">★★★★★</div>
-        <blockquote>"The luxury SUV for our Coorg trip was brand new. The driver knew the best spots for photography along the way."</blockquote>
-        <span class="testi-author">— Dr. Priya Menon, Bangalore</span>
+        <blockquote>"Best cab service for Jaipur sightseeing. Took us to all 5 forts in one day without any rush."</blockquote>
+        <span class="testi-author">— Neha Gupta, Mumbai</span>
       </div>
     </div>
   </div>
@@ -386,7 +400,6 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="cabs.html">Book Cab</a></li>
-          <li><a href="contact.html">Contact</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
@@ -399,7 +412,7 @@
       </div>
       <div class="footer-col footer-contact">
         <h4>Connect</h4>
-        <p>support@navisslate.com</p>
+        <p>support@sprintcabs.com</p>
         <p>+91 8502879691</p>
       </div>
     </div>

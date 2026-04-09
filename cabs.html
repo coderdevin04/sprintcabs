@@ -68,13 +68,13 @@
   footer a { color:rgba(255,255,255,0.5);text-decoration:none; }
   .modal-overlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:300; }
   .modal-overlay.active { display:flex; }
-  .modal-content { background:white;border-radius:1.25rem;padding:2rem;width:90%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,0.2); }
+  .modal-content { background:white;border-radius:1.25rem;padding:2rem;width:90%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,0.2);max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch; }
   .modal-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem; }
   .modal-header h2 { font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark);margin:0; }
   .modal-close { background:none;border:none;font-size:1.5rem;color:var(--text-muted);cursor:pointer; }
   .form-group { margin-bottom:1.25rem; }
   .form-label { display:block;font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:0.5rem; }
-  .form-input { width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:0.75rem;font-family:inherit;font-size:0.875rem;color:var(--text); }
+  .form-input { width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:0.75rem;font-family:inherit;font-size:16px;color:var(--text);min-height:48px; }
   .form-input:focus { outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,106,97,0.1); }
   .vehicle-info { background:var(--surface-low);padding:1rem;border-radius:0.75rem;margin-bottom:1.25rem;border-left:4px solid var(--teal); }
   .vehicle-info p { font-size:0.875rem;color:var(--text);margin:0.25rem 0; }
@@ -95,7 +95,6 @@
       <a href="index.html">Home</a>
       <a href="cabs.html" class="active">Book Cab</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
     </div>
     <div class="nav-ctas">
       <button class="btn-ghost">Call</button>
@@ -131,32 +130,32 @@
       <!-- Vehicle details will be populated here -->
     </div>
 
-    <form id="bookingForm" onsubmit="handleBooking(event)">
+    <div id="bookingForm">
       <div class="form-group">
         <label class="form-label">Pickup Location *</label>
-        <input type="text" class="form-input" id="pickupLocation" placeholder="e.g., Jaipur Railway Station" required/>
+        <input type="text" class="form-input" id="pickupLocation" placeholder="e.g., Jaipur Railway Station"/>
       </div>
 
       <div class="form-group">
         <label class="form-label">Drop Location *</label>
-        <input type="text" class="form-input" id="dropLocation" placeholder="e.g., Udaipur City Palace" required/>
+        <input type="text" class="form-input" id="dropLocation" placeholder="e.g., Udaipur City Palace"/>
       </div>
 
       <div class="form-group">
         <label class="form-label">Travel Date *</label>
-        <input type="date" class="form-input" id="travelDate" required/>
+        <input type="date" class="form-input" id="travelDate"/>
       </div>
 
       <div class="form-group">
         <label class="form-label">Number of Passengers *</label>
-        <input type="number" class="form-input" id="passengers" min="1" placeholder="e.g., 4" required/>
+        <input type="number" class="form-input" id="passengers" min="1" placeholder="e.g., 4"/>
       </div>
 
       <div class="modal-actions">
         <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
-        <button type="submit" class="btn-submit">Send via WhatsApp</button>
+        <button type="button" class="btn-submit" onclick="handleBooking()">Send via WhatsApp</button>
       </div>
-    </form>
+    </div>
   </div>
 </div>
 
@@ -184,16 +183,23 @@ function openBookingModal(event, vehicleName, price, seats) {
 
 function closeModal() {
   document.getElementById('bookingModal').classList.remove('active');
-  document.getElementById('bookingForm').reset();
+  document.getElementById('pickupLocation').value = '';
+  document.getElementById('dropLocation').value = '';
+  document.getElementById('travelDate').value = '';
+  document.getElementById('passengers').value = '';
 }
 
-function handleBooking(event) {
-  event.preventDefault();
-  
-  const pickup = document.getElementById('pickupLocation').value;
-  const drop = document.getElementById('dropLocation').value;
+function handleBooking() {
+  const pickup = document.getElementById('pickupLocation').value.trim();
+  const drop = document.getElementById('dropLocation').value.trim();
   const date = document.getElementById('travelDate').value;
   const passengers = document.getElementById('passengers').value;
+
+  // Manual validation
+  if (!pickup || !drop || !date || !passengers) {
+    alert('Please fill in all fields before sending.');
+    return;
+  }
   
   // Format date for display
   const dateObj = new Date(date);
@@ -205,8 +211,8 @@ function handleBooking(event) {
   // Encode message for URL
   const encodedMessage = encodeURIComponent(message);
   
-  // Get WhatsApp number from config (or use default)
-  const whatsappNumber = window.WHATSAPP_NUMBER || '918502879624'; // Replace with actual number
+  // Get WhatsApp number from config (single source of truth)
+  const whatsappNumber = (typeof CONFIG !== 'undefined' && CONFIG.whatsapp.phoneNumber) ? CONFIG.whatsapp.phoneNumber : '918502879691';
   
   // Open WhatsApp
   const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;

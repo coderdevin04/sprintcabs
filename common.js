@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Form submission handler
-  const forms = document.querySelectorAll('form, .form-card, .form-side');
+  // Form submission handler - only for actual form elements, not divs with forms inside them
+  const forms = document.querySelectorAll('form');
   if (forms.length > 0) {
     forms.forEach(form => {
-      const submitBtn = form.querySelector('button[type="submit"], .btn-send, .btn-confirm');
+      const submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.addEventListener('click', function(e) {
           const inputs = form.querySelectorAll('input[required], textarea[required]');
@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
           if (isValid) {
             e.preventDefault();
-            alert('Form submitted successfully!');
             // You can add actual form submission logic here
           }
         });

@@ -28,7 +28,7 @@
   .about-hero-bg::after { content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(0,24,21,0.85),rgba(0,24,21,0.3)); }
   .about-hero-content { position:relative;z-index:1;padding:0 3rem;max-width:1200px;margin:0 auto;width:100%; }
   .about-tag { font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dim);display:block;margin-bottom:1rem; }
-  .about-hero h1 { font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5rem);font-weight:900;color:white;letter-spacing:-0.04em;line-height:0.9;margin-bottom:1.5rem; }
+  .about-hero h1 { font-family:'Playfair Display',serif;font-size:clamp(2rem,8vw,5rem);font-weight:900;color:white;letter-spacing:-0.04em;line-height:0.9;margin-bottom:1.5rem; }
   .about-hero h1 em { font-style:italic;color:var(--gold-dim); }
   .about-hero p { color:rgba(255,255,255,0.8);font-size:1.05rem;max-width:480px;line-height:1.6; }
   .about-cta { margin-top:2rem;display:inline-flex;align-items:center;gap:0.5rem;padding:0.875rem 2rem;background:linear-gradient(135deg,var(--dark-2),var(--teal));color:white;border:none;border-radius:0.75rem;font-family:inherit;font-weight:700;font-size:0.95rem;cursor:pointer;text-decoration:none; }
@@ -95,7 +95,7 @@
   .stars { color:var(--gold-dim);font-size:1.1rem;display:flex;gap:0.2rem;margin-bottom:1.25rem; }
   .testi-card blockquote { font-style:italic;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem;font-size:0.9rem; }
   .reviewer { display:flex;align-items:center;gap:0.75rem; }
-  .reviewer img { width:44px;height:44px;border-radius:50%;object-fit:cover; }
+  
   .reviewer-name { font-weight:700;font-size:0.85rem; }
   .reviewer-role { font-size:0.75rem;color:var(--text-muted); }
 
@@ -103,7 +103,8 @@
   .fab:hover { transform:scale(1.1) translateY(-4px); }
   footer { background:#0f1a18;color:rgba(255,255,255,0.5);padding:2.5rem;text-align:center;font-size:0.85rem; }
   footer a { color:rgba(255,255,255,0.5);text-decoration:none; }
-  @media (max-width:900px) { .stats-grid,.verify-grid,.testi-grid,.safety { grid-template-columns:1fr; } .journey { grid-template-columns:1fr; } .nav-links { display:none; } }
+  @media (max-width:900px) { .stats-grid,.verify-grid,.testi-grid,.safety { grid-template-columns:1fr; } .journey { grid-template-columns:1fr; } .nav-links { display:none; } .safety-small { order:-1; } }
+  @media (max-width:600px) { .verify-grid { grid-template-columns:1fr 1fr; } .testi-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -114,7 +115,6 @@
       <a href="index.html">Home</a>
       <a href="cabs.html">Book Cab</a>
       <a href="about.html" class="active">About</a>
-      <a href="contact.html">Contact</a>
     </div>
     <div class="nav-ctas">
       <button class="btn-ghost">Call</button>
@@ -129,19 +129,19 @@
     <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4u33cNNvIUYK7f-iUBwDtHHOfpj6Has4XHyC-S7YMvGM0zyA2JAbrv1zCcJ3QinxpRqKYEfH_E6eN-SRAeWPw35rYIeUo057NjD85cDbBFdlSFNN3lNjHED1reJDGaCTcpnwkxDQSqDougrCsa0p2EJ7gUhy-gjAbZ9-5F-Quu8mLIlnPprcZzvD8rbop7T_koJdXQuZ39pd5BIzD5hu47ZzA_8KHD0UpNjHFjdlpkkwRoPS_-AD2JyXyh2QRAf6ZuL9ljHiCvdc" alt="Luxury travel"/>
   </div>
   <div class="about-hero-content">
-    <span class="about-tag">Our Mission</span>
-    <h1>Elevating every<br/><em>journey.</em></h1>
-    <p>We don't just provide transportation; we curate experiences. Navis Slate is dedicated to seamless mobility that prioritizes safety, trust, and the joy of discovery.</p>
-    <a href="vehicles.html" class="about-cta">Explore Routes <span class="material-symbols-outlined">arrow_forward</span></a>
+    <span class="about-tag">Based in Jaipur · Rajasthan</span>
+    <h1>Rajasthan's roads,<br/><em>our passion.</em></h1>
+    <p>Sprint Cabs was built on one belief — every traveller deserves a ride they can trust. From the Pink City's busy lanes to the golden dunes of Jaisalmer, we make the journey as memorable as the destination.</p>
+    <a href="cabs.html" class="about-cta">Book a Cab <span class="material-symbols-outlined">arrow_forward</span></a>
   </div>
 </div>
 
 <!-- STATS -->
 <div class="stats-bar">
   <div class="stats-grid">
-    <div class="stat-card"><p class="stat-num">10k+</p><p class="stat-label">Trips Completed</p></div>
-    <div class="stat-card"><p class="stat-num teal">500+</p><p class="stat-label">Verified Drivers</p></div>
-    <div class="stat-card"><p class="stat-num">4.9/5</p><p class="stat-label">Average Rating</p></div>
+    <div class="stat-card"><p class="stat-num">3,500+</p><p class="stat-label">Trips Completed</p></div>
+    <div class="stat-card"><p class="stat-num teal">30+</p><p class="stat-label">Trusted Driver Partners</p></div>
+    <div class="stat-card"><p class="stat-num">4.8/5</p><p class="stat-label">Average Guest Rating</p></div>
   </div>
 </div>
 
@@ -151,17 +151,17 @@
     <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIzlR9T_3NYPRjtI66XSofmcxuQdGLZSj_JBWloWVmHf5DcuogsM3-gm4Rkx-gSqwHYVvevJ_mqezgiqALRtaPpjgQZmflvtX9yKDNE-DA7szrkLX8iNjBtOX7J3kD1gH8xwTY1qsIq3rvBqlFPssED1PIUxmSso-PCbu-eqxipmoEg9V79G9d_uRFlHyDfKtMjU-TY2qACLpfbo-Z7a9PGqmq7NvcvZNGW-5Gd892sAhO9zxBXCsJye9CJRqugslTr-t8DZ8jNcI" alt="Driver in car"/>
   </div>
   <div class="journey-text">
-    <span class="section-tag">Our Journey</span>
-    <h2>From a single route to a <em style="font-weight:300;font-style:italic;">continental network.</em></h2>
-    <p>Navis Slate began with a simple observation: travel is often the most stressful part of an adventure. In 2018, we set out to change that by focusing on driver quality over fleet quantity.</p>
+    <span class="section-tag">Our Story</span>
+    <h2>Started in Jaipur,<em style="font-weight:300;font-style:italic;"> built for Rajasthan.</em></h2>
+    <p>Sprint Cabs started with a simple idea: tourists and locals in Jaipur deserved better than overpriced, unreliable rides. We began with two Innova Crystas and a network of trusted driver partners, handpicked for their knowledge of Rajasthan's roads and their commitment to genuine hospitality.</p>
     <div class="features">
       <div class="feature-item">
         <div class="feat-icon"><span class="material-symbols-outlined">route</span></div>
-        <div><p class="feat-title">Curated Pathing</p><p class="feat-sub">Intelligent routing that prioritizes safety and scenic value.</p></div>
+        <div><p class="feat-title">Local Route Expertise</p><p class="feat-sub">Our drivers know every shortcut, dhaba stop, and scenic viewpoint across Jaipur, Jodhpur, Udaipur, Jaisalmer and beyond.</p></div>
       </div>
       <div class="feature-item">
         <div class="feat-icon"><span class="material-symbols-outlined">handshake</span></div>
-        <div><p class="feat-title">Local Partnerships</p><p class="feat-sub">We work exclusively with local experts who know the terrain better than any GPS.</p></div>
+        <div><p class="feat-title">Commission-Based Driver Network</p><p class="feat-sub">We partner with 30+ independent car owners in Jaipur, giving them fair earnings while giving you more vehicle choices.</p></div>
       </div>
     </div>
   </div>
@@ -173,13 +173,13 @@
     <div class="verify-header">
       <span class="section-tag">Gold Standard Trust</span>
       <h2>How We Verify Excellence</h2>
-      <p>Only 3% of applicants pass our rigorous 5-stage verification process, ensuring you're always in safe hands.</p>
+      <p>Every driver partner goes through a personal vetting process before they carry a single Sprint Cabs passenger.</p>
     </div>
     <div class="verify-grid">
-      <div class="verify-card"><span class="verify-icon material-symbols-outlined">badge</span><h3>Identity Check</h3><p>Multi-layer background and criminal record verification for every candidate.</p></div>
-      <div class="verify-card"><span class="verify-icon material-symbols-outlined">directions_car</span><h3>Vehicle Audit</h3><p>150-point mechanical inspection of every vehicle in our premium fleet.</p></div>
-      <div class="verify-card"><span class="verify-icon material-symbols-outlined">psychology</span><h3>Skill Assessment</h3><p>Advanced defensive driving tests and local knowledge evaluations.</p></div>
-      <div class="verify-card"><span class="verify-icon material-symbols-outlined">verified</span><h3>Final Certification</h3><p>Successful completion of Navis Slate Hospitality & Etiquette training.</p></div>
+      <div class="verify-card"><span class="verify-icon material-symbols-outlined">badge</span><h3>ID & Licence Check</h3><p>Valid driving licence, Aadhaar verification, and police clearance for every driver in our network.</p></div>
+      <div class="verify-card"><span class="verify-icon material-symbols-outlined">directions_car</span><h3>Vehicle Inspection</h3><p>We personally inspect every car for cleanliness, AC performance, and road-fitness before onboarding.</p></div>
+      <div class="verify-card"><span class="verify-icon material-symbols-outlined">psychology</span><h3>Route Knowledge</h3><p>Drivers are tested on key Rajasthan routes, tourist landmarks, and highway safety protocols.</p></div>
+      <div class="verify-card"><span class="verify-icon material-symbols-outlined">verified</span><h3>Guest Etiquette</h3><p>Drivers are briefed on punctuality, professional behaviour, and handling both domestic and foreign tourists.</p></div>
     </div>
   </div>
 </div>
@@ -190,14 +190,14 @@
     <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3_b1fKJ0FlifEPG2_2-x_VSxPshFdS0ZfZo_BzYq2F1qjebktiu_3iQNKQKxh4xIcXcw2M0KbaIMxow4Nshb3kEcC52TzNhKqnS0SeELGEGegPzgLiIXoFNPL5Yx7opCL59gcwTQo2b6U3LbqelymOpfWgami0OlJ7yneAlYyCoYE6oGkm7HWXld09rFBMKX3twA2Rvxh0RU2fvQvA14PH4Z7OfFVz8KRpjJXHVaYqzdLtofuAe4la7OTM5U7h6vSC1PXxK8PNpw" alt="Safety"/>
     <div class="safety-big-content">
       <span class="safety-big-tag">Always On</span>
-      <h3>Safety Commitment</h3>
-      <p>Our 24/7 command center monitors every active trip using real-time GPS telemetry to ensure your journey stays on track and secure.</p>
+      <h3>Always Reachable</h3>
+      <p>Our team is available on WhatsApp from 6 AM to midnight. For airport and late-night pickups, our drivers stay in direct contact until you reach your destination safely.</p>
     </div>
   </div>
   <div class="safety-small">
     <span class="material-symbols-outlined">gpp_good</span>
-    <h3>Insured & Protected</h3>
-    <p>Every passenger is covered by our comprehensive premium travel insurance from the moment of pickup to drop-off.</p>
+    <h3>Fixed Fares, No Surprises</h3>
+    <p>We quote your fare upfront — no surge pricing, no hidden charges. What you agree on WhatsApp is what you pay. Full stop.</p>
   </div>
 </div>
 
@@ -205,31 +205,31 @@
 <div class="testi-section">
   <div class="testi-inner">
     <div class="testi-header">
-      <h2>Trusted by <span style="color:var(--teal);">Global Explorers</span></h2>
+      <h2>Loved by <span style="color:var(--teal);">Our Passengers</span></h2>
     </div>
     <div class="testi-grid">
       <div class="testi-card">
         <div class="stars">★★★★★</div>
-        <blockquote>"The driver wasn't just on time; he was early and knew the best shortcuts to avoid city traffic. Best service I've had."</blockquote>
+        <blockquote>"Booked an Innova for our Jaipur–Udaipur trip. Driver was on time, car was spotless, and he stopped at the best viewpoint on the Nathdwara highway. Will book again."</blockquote>
         <div class="reviewer">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQzXlPFWMT6LdZFq7TJkR9Qoca1uZGw5z0dwjUM2DrwrVE_EgEGnJhKmuLIHxaujU-XQHrvDgTAJiMtfaIwTelpNHFasLiADraXGhRlvPNPRoY6-bvSFbDKRka3TVed-uoH-vHWZrj6Eq3pmvMt6kdYf-TytKj3aDoM4fbSiIAPop7kHeGk-3gsDe2t2LVEbIY8caGaXxd1dMFQjlTlhFjMqVpd8VSzi5RThya78jl595oaivIIqi8Jg8NEBNPqm7UEIZO5-Qu71E" alt="Marcus"/>
-          <div><p class="reviewer-name">Marcus Chen</p><p class="reviewer-role">Business Traveler</p></div>
+          
+          <div><p class="reviewer-name">Priya Sharma</p><p class="reviewer-role">Tourist from UP</p></div>
         </div>
       </div>
       <div class="testi-card">
         <div class="stars">★★★★★</div>
-        <blockquote>"Navis Slate transformed our family trip. No more stressing about directions or parking. Absolute luxury."</blockquote>
+        <blockquote>"Sprint Cabs handled our entire Golden Triangle tour. Jaipur to Agra to Delhi — smooth, comfortable and the driver was very knowledgeable about each city."</blockquote>
         <div class="reviewer">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd3YQIvb9IfLAUXOZVrFFw0kkESmwhnhaQHipxKjEPVCW-jfUwRpPsHLZnmggGCFcjfe756HYI8WisfvzhTF0H6kYgK6kAJusk9OWO2Yq6AjadThKqKN2m4aADSYJ9XfnYVjTvJVcCdHLLRKE3ULPWdejBqRjqWMpA73wkM-202s9x3ITDnQcHPC-GwcxcKEDIqVnZLm3qqcDZYb5hwZ2h5TbwG3kQCUbB7TPNq_HAXVMS1E5I80Obvsu5XYeF-_ouSOBCcgj3pwo" alt="Elena"/>
-          <div><p class="reviewer-name">Elena Rodriguez</p><p class="reviewer-role">Holiday Traveler</p></div>
+          
+          <div><p class="reviewer-name">David & Sarah Mitchell</p><p class="reviewer-role">Tourists from Australia</p></div>
         </div>
       </div>
       <div class="testi-card">
         <div class="stars">★★★★★</div>
-        <blockquote>"The car was immaculate and the driver was incredibly discreet and professional. Highly recommended."</blockquote>
+        <blockquote>"Used Sprint Cabs for a corporate group trip from Jaipur airport to our hotel and back. Very professional, AC was great, and driver arrived 10 minutes early. Highly recommend."</blockquote>
         <div class="reviewer">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqA_JpQ6DtLiT8eoIALVCJziU0E78wJnpen_Uf6jgF3nZKCty3g44wE95g7EOaQexFXv9COeSJe2W2LsDc8It_8v5syk6Wo40-izOiYdQC8LKWu8inD3tDsSstvaQGptlI_hm3E_DBeQILwKcVFUlwTxhZ6ckZSr4VwxNtwfN8GHokDZ979z0xDisWymvIJk9LegjOzeBIETjEt_N_vEz_IIAgkZbeS4qBsKSokyK_aa0STGkioDRAAAE2mmSSj6ojPAFvdeK-UKQ" alt="James"/>
-          <div><p class="reviewer-name">James Wilson</p><p class="reviewer-role">Executive Client</p></div>
+          
+          <div><p class="reviewer-name">Rajeev Agarwal</p><p class="reviewer-role">Corporate Client, Jaipur</p></div>
         </div>
       </div>
     </div>
@@ -237,7 +237,7 @@
 </div>
 
 <div class="fab"><span class="material-symbols-outlined">chat</span></div>
-<footer><p>© 2024 Navis Slate · <a href="index.html">Home</a> · <a href="contact.html">Contact</a></p></footer>
+<footer><p>© 2016 Sprint Cabs · <a href="index.html">Home</a></p></footer>
 <script src="config.js"></script>
 <script src="common.js"></script>
 </body>
