@@ -5,6 +5,9 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Sprint Cabs</title>
+  <link rel="icon" type="image/x-icon" href="photos/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="photos/favicon.ico" />
+  <link rel="apple-touch-icon" href="photos/favicon.ico" />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
@@ -54,7 +57,7 @@
 
     /* NAV */
     nav {
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       z-index: 100;
@@ -76,7 +79,7 @@
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 900;
       color: var(--dark);
       letter-spacing: -0.03em;
@@ -87,6 +90,7 @@
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      margin-left: auto;
     }
 
     .nav-links a {
@@ -148,7 +152,91 @@
     }
 
     .btn-book-cab {
-      display : none;
+      display: inline-flex;
+      margin-left: 1rem;
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .mobile-menu {
+      display: none;
+      width: 100%;
+      background: rgba(249, 249, 255, 0.98);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 0 1.5rem;
+      gap: 0;
+      border-bottom: 1px solid rgba(197, 198, 205, 0.3);
+      box-shadow: 0 10px 24px rgba(0, 24, 21, 0.08);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease;
+    }
+
+    .mobile-menu.active {
+      max-height: 320px;
+      opacity: 1;
+      padding: 0.5rem 1.5rem 1rem;
+    }
+
+    .mobile-menu a {
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(197, 198, 205, 0.2);
+      transition: all 0.2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      background: var(--surface-low);
+      color: var(--text);
+    }
+
+    .mobile-menu a.active {
+      color: var(--teal);
+      font-weight: 700;
+      background: rgba(0, 106, 97, 0.08);
     }
 
     /* HERO */
@@ -846,11 +934,19 @@
         display: none;
       }
 
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+
       .btn-wa {
         width: 100%;
       }
       .fleet-img{
-        height: 200px;
+        height: 165px;
       }
 
       .why-grid {
@@ -957,8 +1053,11 @@
 
       /* HERO */
       .hero {
-        min-height: 50rem;
+        min-height: 27rem;
         padding: 64px 1rem 0;
+      }
+      .hero-bg-img {
+        height :27rem;
       }
 
       .hero-badge {
@@ -975,7 +1074,7 @@
         font-size: 0.95rem;
         margin: 0 auto 2rem;
       }
-
+      
       /* SEARCH FORM */
       .search-card {
         padding: 1.5rem;
@@ -1062,7 +1161,7 @@
       }
 
       .fleet-img {
-        height: 140px;
+        height: 200px;
       }
 
       .fleet-body {
@@ -1224,7 +1323,12 @@
     }
 
     @media (max-width: 360px) {
-
+      .hero {
+        height :25rem;
+      }
+      .hero-bg-img{
+        height :25rem;
+      }
       /* Extra small devices */
       .nav-inner {
         padding: 0 0.75rem;
@@ -1284,12 +1388,24 @@
       <div class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="cabs.html">Book Cab</a>
+        <a href="blogs.html">Blog</a>
         <a href="about.html">About</a>
       </div>
       <a href="cabs.html" class="btn-book-cab">
         <span class="material-symbols-outlined" style="font-size:1rem;">local_taxi</span>
         Book Cab
       </a>
+      <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="active">Home</a>
+      <a href="cabs.html">Book Cab</a>
+      <a href="blogs.html">Blog</a>
+      <a href="about.html">About</a>
     </div>
   </nav>
 
@@ -1529,13 +1645,37 @@
 
   <!-- FAB -->
   <div class="fab">
-    <span class="material-symbols-outlined" style="font-size:1.3rem;">chat</span>
-    <span class="label">WhatsApp</span>
+    <img src="photos/whatsapp.svg" alt="WhatsApp" width="24" height="24" />
   </div>
 
-  <script src="config.js"></script>
-  <script src="common.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
   <script>
+    // Hamburger menu toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburgerBtn.addEventListener('click', function () {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        hamburgerBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('nav') && !event.target.closest('#mobileMenu') && mobileMenu.classList.contains('active')) {
+        hamburgerBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      }
+    });
     // Tab switcher
     document.querySelectorAll('.trip-tab').forEach(tab => {
       tab.addEventListener('click', () => {
@@ -1551,7 +1691,20 @@
         const data = await response.json();
         const fleetGrid = document.getElementById('fleetGrid');
 
-        fleetGrid.innerHTML = data.vehicles.map(vehicle => `
+        fleetGrid.innerHTML = data.vehicles.map(vehicle => {
+          const variantPrices = Array.isArray(vehicle.variants)
+            ? vehicle.variants
+                .map(v => Number(v.price))
+                .filter(p => Number.isFinite(p))
+            : [];
+          const displayPrice = variantPrices.length
+            ? Math.min(...variantPrices)
+            : vehicle.price;
+          const displayUnit = variantPrices.length
+            ? (vehicle.variants[0].priceUnit || vehicle.priceUnit || '/km')
+            : vehicle.priceUnit;
+
+          return `
         <div class="fleet-card">
           <div class="fleet-img">
             <img src="${vehicle.photo}" alt="${vehicle.name}"/>
@@ -1560,10 +1713,11 @@
             <h3>${vehicle.name}</h3>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">${vehicle.subtitle}</p>
             <p>${vehicle.description}</p>
-            <span class="fleet-price">₹${vehicle.price}${vehicle.priceUnit}</span>
+            <span class="fleet-price">₹${displayPrice}${displayUnit}</span>
           </div>
         </div>
-      `).join('');
+      `;
+        }).join('');
       } catch (error) {
         console.error('Error loading fleet:', error);
         document.getElementById('fleetGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Error loading fleet. Please try again later.</p>';

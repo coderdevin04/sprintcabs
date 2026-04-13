@@ -3,6 +3,7 @@
     {
       "id": 1,
       "name": "Maruti Suzuki Dzire",
+      "type": "Sedan",
       "subtitle": "Economical City Sedan",
       "description": "Perfect for solo travelers and couples. Fuel-efficient sedan with comfortable seating for short city trips and affordable rates.",
       "price": 11,
@@ -16,6 +17,7 @@
     {
       "id": 2,
       "name": "Toyota Etios",
+      "type": "Sedan",
       "subtitle": "Reliable Compact Sedan",
       "description": "Known for reliability and fuel efficiency. Ideal for small groups and daily commutes with sturdy construction and dependable performance.",
       "price": 11,
@@ -29,6 +31,7 @@
     {
       "id": 3,
       "name": "Maruti Suzuki Ciaz",
+      "type": "Sedan",
       "subtitle": "Premium Sedan for Business",
       "description": "Spacious premium sedan with elegant interiors perfect for business travel and corporate meets. Offers superior comfort for longer city journeys.",
       "price": 12,
@@ -42,6 +45,7 @@
     {
       "id": 4,
       "name": "Hyundai Aura",
+      "type": "Sedan",
       "subtitle": "Modern Compact Sedan",
       "description": "Modern design with contemporary features, ideal for couples and small groups. Smooth ride quality with good fuel economy for city travels.",
       "price": 11,
@@ -55,6 +59,7 @@
     {
       "id": 5,
       "name": "Maruti Suzuki Ertiga",
+      "type": "MPV",
       "subtitle": "Spacious 6-Seater MPV",
       "description": "Versatile MPV perfect for small families and groups of 5-6 people. Comfortable seating with good boot space for luggage on weekend getaways.",
       "price": 14,
@@ -68,6 +73,7 @@
     {
       "id": 6,
       "name": "Toyota Innova",
+      "type": "SUV",
       "subtitle": "Popular Workhorse SUV",
       "description": "India's most trusted 6-seater SUV, renowned for durability and comfort. Ideal for medium group trips with excellent fuel efficiency and road stability.",
       "price": 15,
@@ -81,6 +87,7 @@
     {
       "id": 7,
       "name": "Toyota Innova Crysta",
+      "type": "SUV",
       "subtitle": "Premium Luxury SUV",
       "description": "Premium 6-seater with enhanced interiors and comfort features. Perfect for longer journeys and special occasions with superior ride quality.",
       "price": 18,
@@ -94,6 +101,7 @@
     {
       "id": 8,
       "name": "Toyota Innova Hycross",
+      "type": "MPV",
       "subtitle": "Advanced Hybrid MPV",
       "description": "Latest generation hybrid MPV with cutting-edge features. Exceptional fuel efficiency and modern technology for eco-conscious travelers.",
       "price": 22,
@@ -107,6 +115,7 @@
     {
       "id": 9,
       "name": "Kia Seltos",
+      "type": "SUV",
       "subtitle": "Stylish Compact SUV",
       "description": "Modern 5-seater SUV with sleek design and advanced features. Great ground clearance and comfortable seating for small group adventures.",
       "price": 15,
@@ -120,6 +129,7 @@
     {
       "id": 10,
       "name": "Tempo Traveller",
+      "type": "Coach",
       "subtitle": "Affordable Large Group Coach",
       "description": "Spacious coach available in 12, 17, or 24-seater configurations. Perfect for large group tours, corporate outings, and budget-friendly pilgrimages.",
       "tag": "",
@@ -147,6 +157,7 @@
     {
       "id": 11,
       "name": "Luxury Force Urbania",
+      "type": "Coach",
       "subtitle": "Premium 12-Seater Coach",
       "description": "Ultra-luxury coach with premium seating and modern amenities. Ideal for corporate travels, VIP tours, and executive group transportation.",
       "price": 40,
@@ -160,6 +171,7 @@
     {
       "id": 12,
       "name": "Urbania Standard",
+      "type": "Coach",
       "subtitle": "Standard 17-Seater Coach",
       "description": "Comfortable 17-seater coach ideal for large group tours and long-distance travel. Reliable and economical option for extended group journeys.",
       "price": 35,

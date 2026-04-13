@@ -5,6 +5,9 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Our Cabs | Sprint Cabs</title>
+  <link rel="icon" type="image/x-icon" href="photos/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="photos/favicon.ico" />
+  <link rel="apple-touch-icon" href="photos/favicon.ico" />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
@@ -45,7 +48,7 @@
     }
 
     nav {
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       z-index: 100;
@@ -128,8 +131,91 @@
       transform: scale(1.05);
     }
 
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .mobile-menu {
+      display: none;
+      width: 100%;
+      background: rgba(249, 249, 255, 0.98);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 0 1.5rem;
+      gap: 0;
+      border-bottom: 1px solid rgba(197, 198, 205, 0.3);
+      box-shadow: 0 10px 24px rgba(0, 24, 21, 0.08);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease;
+    }
+
+    .mobile-menu.active {
+      max-height: 320px;
+      opacity: 1;
+      padding: 0.5rem 1.5rem 1rem;
+    }
+
+    .mobile-menu a {
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(197, 198, 205, 0.2);
+      transition: all 0.2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      background: var(--surface-low);
+      color: var(--text);
+    }
+
+    .mobile-menu a.active {
+      color: var(--teal);
+      font-weight: 700;
+      background: rgba(0, 106, 97, 0.08);
+    }
+
     main {
-      padding: 7rem 2rem 6rem;
+      padding: 2rem 2rem 6rem;
       max-width: 1400px;
       margin: 0 auto;
     }
@@ -236,6 +322,39 @@
       background: var(--dark-2);
       color: white;
       border-color: var(--dark-2);
+    }
+
+    .type-filters {
+      display: flex;
+      flex-direction: row;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--text-secondary);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .filter-btn.active {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
     }
 
     .grid {
@@ -650,13 +769,21 @@
       .grid {
         grid-template-columns: 1fr;
       }
+    }
 
+    @media (max-width: 600px) {
       .nav-links {
         display: none;
       }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
     }
-
-
 
     @media (max-width: 420px) {
 
@@ -689,7 +816,7 @@
 
       /* MAIN */
       main {
-        padding: 5.5rem 1rem 4rem;
+        padding: 1.5rem 1rem 4rem;
       }
 
       .page-header {
@@ -965,12 +1092,20 @@
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="cabs.html" class="active">Book Cab</a>
+        <a href="blogs.html">Blog</a>
         <a href="about.html">About</a>
       </div>
-      <div class="nav-ctas">
-        <button class="btn-ghost">Call</button>
-        <button class="btn-wa">WhatsApp</button>
-      </div>
+      <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="cabs.html" class="active">Book Cab</a>
+      <a href="blogs.html">Blog</a>
+      <a href="about.html">About</a>
     </div>
   </nav>
 
@@ -981,6 +1116,20 @@
         comfort.</p>
     </div>
     <div class="layout">
+      <!-- FILTERS SIDEBAR -->
+      <div class="sidebar">
+        <div class="filter-group">
+          <label class="filter-label">Vehicle Type</label>
+          <div class="type-filters">
+            <button class="filter-btn active" data-type="all">All</button>
+            <button class="filter-btn" data-type="Sedan">Sedan</button>
+            <button class="filter-btn" data-type="SUV">SUV</button>
+            <button class="filter-btn" data-type="MPV">MPV</button>
+            <button class="filter-btn" data-type="Coach">Coach</button>
+          </div>
+        </div>
+      </div>
+
       <!-- VEHICLE GRID -->
       <div class="grid" id="vehicleGrid">
         <!-- Vehicles will be loaded here from JSON -->
@@ -988,7 +1137,9 @@
     </div>
   </main>
 
-  <div class="fab"><span class="material-symbols-outlined">chat</span></div>
+  <div class="fab">
+    <img src="photos/whatsapp.svg" alt="WhatsApp" width="24" height="24" />
+  </div>
 
   <!-- Booking Modal -->
   <div class="modal-overlay" id="bookingModal">
@@ -1034,9 +1185,34 @@
   <footer>
     <p>© 2016 Sprint Cabs · <a href="index.html">Home</a></p>
   </footer>
-  <script src="config.js"></script>
-  <script src="common.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
   <script>
+    // Hamburger menu toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburgerBtn.addEventListener('click', function () {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        hamburgerBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('nav') && !event.target.closest('#mobileMenu') && mobileMenu.classList.contains('active')) {
+        hamburgerBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      }
+    });
     // Modal management
     let selectedVehicleData = {};
 
@@ -1117,13 +1293,23 @@
       try {
         const response = await fetch('data/vehicles.json');
         const data = await response.json();
+        let vehiclesData = data.vehicles;
+        let currentFilter = 'all';
+
         const vehicleGrid = document.getElementById('vehicleGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
 
-        vehicleGrid.innerHTML = data.vehicles.map(vehicle => {
-          // Check if vehicle has variants
-          const variants = vehicle.variants || [{ seats: vehicle.seats, price: vehicle.price }];
+        // Function to render vehicles based on filter
+        function renderVehicles(filter) {
+          const filtered = filter === 'all' 
+            ? vehiclesData 
+            : vehiclesData.filter(v => v.type === filter);
 
-          return `
+          vehicleGrid.innerHTML = filtered.map(vehicle => {
+            // Check if vehicle has variants
+            const variants = vehicle.variants || [{ seats: vehicle.seats, price: vehicle.price }];
+
+            return `
       <div class="v-card">
         <div class="v-img">
           <img src="${vehicle.photo}" alt="${vehicle.name}"/>
@@ -1178,7 +1364,22 @@
         </div>
       </div>
     `;
-        }).join('');
+          }).join('');
+        }
+
+        // Initial render
+        renderVehicles('all');
+
+        // Add filter button listeners
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function () {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const filterType = this.dataset.type;
+            renderVehicles(filterType);
+          });
+        });
+
       } catch (error) {
         console.error('Error loading vehicles:', error);
         document.getElementById('vehicleGrid').innerHTML = '<p>Error loading vehicles. Please try again later.</p>';

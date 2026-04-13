@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Travel Blog | Sprint Cabs</title>
+  <link rel="icon" type="image/x-icon" href="photos/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="photos/favicon.ico" />
+  <link rel="apple-touch-icon" href="photos/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --teal:#006a61;--dark:#001815;--dark-2:#002f2a;--surface:#f9f9ff;--surface-low:#f0f3ff;--surface-mid:#e7eeff;--surface-high:#dee8ff;--text:#111c2d;--text-muted:#45474c;--text-secondary:#515f74;--gold:#fadfb8;--border:#c5c6cd;--emerald:#10b981; }
+    * { margin:0;padding:0;box-sizing:border-box; }
+    body { font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text); }
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle; }
+    
+    nav { position:sticky;top:0;width:100%;z-index:100;background:rgba(249,249,255,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(197,198,205,0.3);box-shadow:0 1px 20px rgba(0,0,0,0.04); }
+    .nav-inner { display:flex;justify-content:space-between;align-items:center;height:76px;padding:0 2.5rem;max-width:1400px;margin:0 auto; }
+    .logo { font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--dark);letter-spacing:-0.03em;text-decoration:none; }
+    .nav-links { display:flex;gap:2.5rem;align-items:center; }
+    .nav-links a { font-size:0.875rem;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:color 0.2s; }
+    .nav-links a.active { color:var(--teal);font-weight:700;border-bottom:2px solid var(--teal);padding-bottom:2px; }
+    .btn-wa { background:var(--emerald);color:white;border:none;padding:0.6rem 1.4rem;border-radius:100px;font-family:inherit;font-size:0.875rem;font-weight:700;cursor:pointer;transition:transform 0.2s; }
+    .btn-wa:hover { transform:scale(1.05); }
+
+    .hamburger { display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0;width:24px;height:24px;align-items:center;justify-content:center; }
+    .hamburger span { width:24px;height:2px;background:var(--text-secondary);border-radius:2px;transition:all 0.3s ease;display:block; }
+    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(8px, 8px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(7px, -7px); }
+    .mobile-menu { display:none;width:100%;background:rgba(249,249,255,0.98);backdrop-filter:blur(20px);flex-direction:column;padding:0 1.5rem;gap:0;border-bottom:1px solid rgba(197,198,205,0.3);box-shadow:0 10px 24px rgba(0,24,21,0.08);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.3s ease,opacity 0.25s ease,padding 0.25s ease; }
+    .mobile-menu.active { max-height:320px;opacity:1;padding:0.5rem 1.5rem 1rem; }
+    .mobile-menu a { padding:1rem 1.5rem;text-decoration:none;color:var(--text-secondary);font-weight:500;font-size:0.95rem;border-bottom:1px solid rgba(197,198,205,0.2);transition:all 0.2s; }
+    .mobile-menu a:last-child { border-bottom:none; }
+    .mobile-menu a:hover { background:var(--surface-low);color:var(--text); }
+    .mobile-menu a.active { color:var(--teal);font-weight:700;background:rgba(0,106,97,0.08); }
+    
+    main { padding:2rem 2rem 4rem;max-width:1200px;margin:0 auto; }
+    .page-header { text-align:center;margin-bottom:3rem; }
+    .page-header h1 { font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--dark);letter-spacing:-0.04em;margin-bottom:1rem; }
+    .page-header p { color:var(--text-secondary);font-size:1.05rem;max-width:600px;margin:0 auto; }
+    
+    /* FILTERS */
+    .filters { display:flex;gap:1rem;align-items:center;margin-bottom:2.5rem;flex-wrap:wrap;justify-content:center; }
+    .search-box { flex:1;min-width:250px;max-width:400px;position:relative; }
+    .search-box input { width:100%;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:0.75rem;font-family:inherit;font-size:0.95rem; }
+    .search-box input:focus { outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,106,97,0.1); }
+    .filter-buttons { display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center; }
+    .filter-btn { padding:0.6rem 1.2rem;border-radius:0.5rem;border:1px solid var(--border);background:white;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--text); }
+    .filter-btn.active { background:var(--teal);color:white;border-color:var(--teal); }
+    .filter-btn:hover { background:var(--surface-mid);border-color:var(--teal); }
+    
+    /* BLOG GRID */
+    .blog-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2rem;margin-bottom:3rem; }
+    .blog-card { background:white;border-radius:1.25rem;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column; }
+    .blog-card:hover { transform:translateY(-8px);box-shadow:0 16px 50px rgba(0,24,21,0.1); }
+    .blog-image { aspect-ratio:16/9;overflow:hidden;background:var(--surface-low); }
+    .blog-image img { width:100%;height:100%;object-fit:cover;transition:transform 0.4s; }
+    .blog-card:hover .blog-image img { transform:scale(1.05); }
+    .blog-body { padding:1.5rem;flex:1;display:flex;flex-direction:column; }
+    .blog-meta { display:flex;gap:1rem;align-items:center;margin-bottom:0.75rem;font-size:0.75rem;font-weight:600;text-transform:uppercase;color:var(--text-muted); }
+    .blog-category { background:rgba(0,106,97,0.1);color:var(--teal);padding:0.25rem 0.75rem;border-radius:0.35rem; }
+    .blog-title { font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:0.75rem;line-height:1.3; }
+    .blog-excerpt { font-size:0.9rem;color:var(--text-secondary);margin-bottom:1rem;flex:1;line-height:1.5; }
+    .blog-footer { display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--surface-mid); }
+    .blog-date { font-size:0.8rem;color:var(--text-muted); }
+    .read-more { color:var(--teal);font-weight:700;font-size:0.9rem;display:flex;align-items:center;gap:0.4rem; }
+    .read-more::after { content:'→'; }
+    
+    /* EMPTY STATE */
+    .empty-state { text-align:center;padding:3rem;color:var(--text-muted); }
+    .empty-state .material-symbols-outlined { font-size:3rem;color:var(--surface-high);margin-bottom:1rem; }
+    
+    footer { background:#0f1a18;color:rgba(255,255,255,0.5);padding:2.5rem;text-align:center;font-size:0.85rem; }
+    footer a { color:rgba(255,255,255,0.5);text-decoration:none; }
+    
+    /* MOBILE */
+    @media (max-width:900px) {
+      nav { height:auto; }
+      .nav-inner { padding:0 1.5rem;height:auto;min-height:64px; }
+      .blog-grid { grid-template-columns:1fr; }
+      main { padding:1.5rem 1.5rem 3rem; }
+      .filters { gap:0.75rem; }
+      .search-box { max-width:100%; }
+    }
+
+    @media (max-width:600px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .mobile-menu { display:flex; }
+    }
+    
+    @media (max-width:420px) {
+      .nav-inner { padding:0 1rem; }
+      .logo { font-size:1.2rem; }
+      main { padding:1.25rem 1rem 3rem; }
+      .page-header h1 { font-size:clamp(1.75rem,5vw,2.5rem);margin-bottom:0.75rem; }
+      .page-header p { font-size:0.95rem; }
+      .filters { flex-direction:column;gap:0.75rem;justify-content:flex-start; }
+      .search-box { width:100%;min-width:auto; }
+      .filter-buttons { width:100%;justify-content:flex-start;overflow-x:auto;padding-bottom:0.5rem; }
+      .filter-btn { font-size:0.75rem;padding:0.5rem 1rem;flex-shrink:0; }
+      .blog-grid { grid-template-columns:1fr;gap:1.25rem; }
+      .blog-body { padding:1rem; }
+      .blog-title { font-size:1rem; }
+      footer { padding:1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Sprint Cabs</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cabs.html">Book Cab</a>
+      <a href="blogs.html" class="active">Blog</a>
+      <a href="about.html">About</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="cabs.html">Book Cab</a>
+    <a href="blogs.html" class="active">Blog</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h1>Travel Blog</h1>
+    <p>Expert tips, destination guides, and travel stories from Sprint Cabs team</p>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search blogs..."/>
+    </div>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="Route Guide">Route Guide</button>
+      <button class="filter-btn" data-category="Travel Tips">Travel Tips</button>
+      <button class="filter-btn" data-category="Destination Guide">Destinations</button>
+      <button class="filter-btn" data-category="Itinerary">Itinerary</button>
+      <button class="filter-btn" data-category="Safety">Safety</button>
+    </div>
+  </div>
+
+  <!-- BLOG GRID -->
+  <div class="blog-grid" id="blogGrid">
+    <!-- Blogs will be loaded here -->
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <span class="material-symbols-outlined">article</span>
+    <p>No blogs found. Try a different search or filter.</p>
+  </div>
+</main>
+
+<footer><p>© 2016 Sprint Cabs · <a href="index.html">Home</a></p></footer>
+
+<script src="js/config.js"></script>
+<script src="js/blogs.js"></script>
+<script>
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburgerBtn.addEventListener('click', function () {
+    hamburgerBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function () {
+      hamburgerBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!event.target.closest('nav') && !event.target.closest('#mobileMenu') && mobileMenu.classList.contains('active')) {
+      hamburgerBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>
