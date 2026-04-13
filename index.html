@@ -57,7 +57,7 @@
 
     /* NAV */
     nav {
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       z-index: 100;
@@ -90,6 +90,7 @@
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      margin-left: auto;
     }
 
     .nav-links a {
@@ -151,7 +152,8 @@
     }
 
     .btn-book-cab {
-      display : none;
+      display: inline-flex;
+      margin-left: 1rem;
     }
 
     /* HAMBURGER MENU */
@@ -1399,14 +1401,13 @@
         <span></span>
       </button>
     </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="active">Home</a>
+      <a href="cabs.html">Book Cab</a>
+      <a href="blogs.html">Blog</a>
+      <a href="about.html">About</a>
+    </div>
   </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html" class="active">Home</a>
-    <a href="cabs.html">Book Cab</a>
-    <a href="blogs.html">Blog</a>
-    <a href="about.html">About</a>
-  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1690,7 +1691,20 @@
         const data = await response.json();
         const fleetGrid = document.getElementById('fleetGrid');
 
-        fleetGrid.innerHTML = data.vehicles.map(vehicle => `
+        fleetGrid.innerHTML = data.vehicles.map(vehicle => {
+          const variantPrices = Array.isArray(vehicle.variants)
+            ? vehicle.variants
+                .map(v => Number(v.price))
+                .filter(p => Number.isFinite(p))
+            : [];
+          const displayPrice = variantPrices.length
+            ? Math.min(...variantPrices)
+            : vehicle.price;
+          const displayUnit = variantPrices.length
+            ? (vehicle.variants[0].priceUnit || vehicle.priceUnit || '/km')
+            : vehicle.priceUnit;
+
+          return `
         <div class="fleet-card">
           <div class="fleet-img">
             <img src="${vehicle.photo}" alt="${vehicle.name}"/>
@@ -1699,10 +1713,11 @@
             <h3>${vehicle.name}</h3>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">${vehicle.subtitle}</p>
             <p>${vehicle.description}</p>
-            <span class="fleet-price">₹${vehicle.price}${vehicle.priceUnit}</span>
+            <span class="fleet-price">₹${displayPrice}${displayUnit}</span>
           </div>
         </div>
-      `).join('');
+      `;
+        }).join('');
       } catch (error) {
         console.error('Error loading fleet:', error);
         document.getElementById('fleetGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Error loading fleet. Please try again later.</p>';
