@@ -544,6 +544,7 @@
     .v-actions {
       display: flex;
       gap: 0.75rem;
+      position: relative;
     }
 
     .btn-select {
@@ -580,6 +581,37 @@
 
     .btn-info:hover {
       background: var(--surface-low);
+    }
+
+    .info-wrap {
+      position: relative;
+      display: flex;
+    }
+
+    .info-note {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 0.5rem);
+      min-width: 230px;
+      max-width: 280px;
+      background: #1f2937;
+      color: #f8fafc;
+      border-radius: 0.6rem;
+      padding: 0.6rem 0.75rem;
+      font-size: 0.72rem;
+      line-height: 1.45;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: translateY(4px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 20;
+    }
+
+    .info-wrap:hover .info-note,
+    .info-wrap.active .info-note {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .fab {
@@ -1308,6 +1340,7 @@
           vehicleGrid.innerHTML = filtered.map(vehicle => {
             // Check if vehicle has variants
             const variants = vehicle.variants || [{ seats: vehicle.seats, price: vehicle.price }];
+            const minBookingKm = Number(vehicle.minBookingKm) || 40;
 
             return `
       <div class="v-card">
@@ -1357,9 +1390,12 @@
           
           <div class="v-actions">
             <button class="btn-select" onclick="openBookingModal(event, '${vehicle.name}', '${variants[0].price}', '${variants[0].seats}', ${variants.length > 1})">Select Vehicle</button>
-            <button class="btn-info">
-              <span class="material-symbols-outlined">info</span>
-            </button>
+            <div class="info-wrap">
+              <button class="btn-info" type="button" onclick="toggleInfoNote(event, this)">
+                <span class="material-symbols-outlined">info</span>
+              </button>
+              <div class="info-note">Per km rate applies for minimum ${minBookingKm} km booking.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1401,6 +1437,21 @@
       const selectBtn = container.parentElement.querySelector('.btn-select');
       selectBtn.onclick = function (e) { openBookingModal(e, vehicleName, price, seats, true); };
     }
+
+    function toggleInfoNote(event, button) {
+      event.preventDefault();
+      event.stopPropagation();
+      const infoWrap = button.closest('.info-wrap');
+      const isActive = infoWrap.classList.contains('active');
+      document.querySelectorAll('.info-wrap.active').forEach(el => el.classList.remove('active'));
+      if (!isActive) {
+        infoWrap.classList.add('active');
+      }
+    }
+
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.info-wrap.active').forEach(el => el.classList.remove('active'));
+    });
   </script>
 </body>
 

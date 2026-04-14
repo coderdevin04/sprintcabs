@@ -9,9 +9,10 @@
       "price": 11,
       "priceUnit": "/km",
       "seats": 4,
+      "minBookingKm": 40,
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "photo": "photos/Dzire.jpg",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -23,6 +24,7 @@
       "price": 11,
       "priceUnit": "per km",
       "seats": 4,
+      "minBookingKm": 45,
       "tag": "",
       "tagType": "",
       "photo": "photos/Etios.jpg",
@@ -37,6 +39,7 @@
       "price": 12,
       "priceUnit": "per km",
       "seats": 4,
+      "minBookingKm": 50,
       "tag": "",
       "tagType": "",
       "photo": "photos/Ciaz.jpg",
@@ -51,9 +54,10 @@
       "price": 11,
       "priceUnit": "per km",
       "seats": 4,
+      "minBookingKm": 40,
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "photo": "photos/Aura.jpg",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -65,9 +69,10 @@
       "price": 14,
       "priceUnit": "per km",
       "seats": 6,
+      "minBookingKm": 60,
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "photo": "photos/Ertiga.jpg",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -79,9 +84,10 @@
       "price": 15,
       "priceUnit": "per km",
       "seats": 6,
+      "minBookingKm": 70,
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "photo": "photos/Innova.jpg",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -93,6 +99,7 @@
       "price": 18,
       "priceUnit": "per km",
       "seats": 6,
+      "minBookingKm": 80,
       "tag": "",
       "tagType": "",
       "photo": "photos/Crysta.jpg",
@@ -107,9 +114,10 @@
       "price": 22,
       "priceUnit": "per km",
       "seats": 6,
+      "minBookingKm": 100,
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "photo": "photos/Hycross.jpg",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -121,9 +129,10 @@
       "price": 15,
       "priceUnit": "per km",
       "seats": 5,
+      "minBookingKm": 70,
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "photo": "photos/Kia.jpg",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -134,7 +143,8 @@
       "description": "Spacious coach available in 12, 17, or 24-seater configurations. Perfect for large group tours, corporate outings, and budget-friendly pilgrimages.",
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "minBookingKm": 120,
+      "photo": "photos/Tempo.jpg",
       "seatIcon": "airline_seat_recline_normal",
       "variants": [
         {
@@ -163,9 +173,10 @@
       "price": 40,
       "priceUnit": "per km",
       "seats": 12,
+      "minBookingKm": 150,
       "tag": "",
       "tagType": "",
-      "photo": "photos/",
+      "photo": "photos/Force.jpg",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -177,6 +188,7 @@
       "price": 35,
       "priceUnit": "per km",
       "seats": 17,
+      "minBookingKm": 140,
       "tag": "",
       "tagType": "",
       "photo": "photos/",

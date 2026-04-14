@@ -152,7 +152,7 @@
     }
 
     .btn-book-cab {
-      display: inline-flex;
+      display: none;
       margin-left: 1rem;
     }
 
@@ -242,7 +242,7 @@
     /* HERO */
     .hero {
       position: relative;
-      min-height: 60rem;
+      min-height: calc(100vh - 76px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -272,6 +272,15 @@
       object-fit: cover;
       opacity: 0.45;
       mix-blend-mode: luminosity;
+    }
+
+    @media (min-width: 600px) {
+      .hero,
+      .hero-bg,
+      .hero-bg-img {
+        min-height: calc(100vh - 76px);
+        height: calc(100vh - 76px);
+      }
     }
 
     .hero-content {
@@ -919,6 +928,14 @@
         gap: 0.4rem;
         white-space: nowrap;
       }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
     }
 
     @media (max-width: 600px) {
@@ -934,14 +951,6 @@
         display: none;
       }
 
-      .hamburger {
-        display: flex;
-      }
-
-      .mobile-menu {
-        display: flex;
-      }
-
       .btn-wa {
         width: 100%;
       }
@@ -949,8 +958,22 @@
         height: 165px;
       }
 
+      .trust-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
       .why-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .why-item {
+        align-items: center;
+        text-align: center;
+      }
+
+      .why-icon {
+        margin: 0 auto;
       }
 
       .search-grid {
@@ -1137,8 +1160,27 @@
 
       /* TRUST GRID */
       .trust-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(150px, 1fr);
+        gap: 0.75rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.4rem;
+      }
+
+      .stat-card {
+        padding: 1rem 0.8rem;
+      }
+
+      .stat-num {
+        font-size: 1.35rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .stat-label {
+        font-size: 0.58rem;
+        letter-spacing: 0.09em;
       }
 
       .trust-grid>div:first-child {
@@ -1188,6 +1230,11 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
         margin-top: 0.75rem;
+      }
+
+      .why-item {
+        align-items: center;
+        text-align: center;
       }
 
       .why-icon {
@@ -1326,6 +1373,9 @@
       .hero {
         height :25rem;
       }
+      .hero-bg{
+        height: 25rem;
+      }
       .hero-bg-img{
         height :25rem;
       }
@@ -1391,7 +1441,7 @@
         <a href="blogs.html">Blog</a>
         <a href="about.html">About</a>
       </div>
-      <a href="cabs.html" class="btn-book-cab">
+      <a href="#" class="btn-book-cab" id="bookCabCta">
         <span class="material-symbols-outlined" style="font-size:1rem;">local_taxi</span>
         Book Cab
       </a>
@@ -1430,26 +1480,26 @@
       <div class="trust-grid">
         <div>
           <div
-            style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">
+            style="font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">
             500+</div>
-          <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500;">Happy Travelers</p>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Trusted by travelers across India
+          <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500;">Happy Travelers</p>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Trusted by travelers across India
           </p>
         </div>
         <div>
           <div
-            style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">
+            style="font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">
             30+</div>
-          <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500;">Verified Drivers</p>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Professionally vetted for safety
+          <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500;">Verified Drivers</p>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Professionally vetted for safety
           </p>
         </div>
         <div>
           <div
-            style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">
+            style="font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; color: var(--teal); margin-bottom: 0.5rem;">
             4.9★</div>
-          <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500;">Google Rating</p>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Excellence in every journey</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500;">Google Rating</p>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Excellence in every journey</p>
         </div>
       </div>
     </div>
@@ -1654,6 +1704,12 @@
     // Hamburger menu toggle
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const bookCabCta = document.getElementById('bookCabCta');
+    const bookCabNavLink = document.querySelector('.nav-links a[href="cabs.html"]');
+
+    if (bookCabCta && bookCabNavLink) {
+      bookCabCta.href = bookCabNavLink.getAttribute('href');
+    }
 
     hamburgerBtn.addEventListener('click', function () {
       hamburgerBtn.classList.toggle('active');
