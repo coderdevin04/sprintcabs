@@ -962,7 +962,7 @@
 
       /* SPEC BOX */
       .v-spec-box {
-        
+
         gap: 1rem;
         align-items: stretch;
         justify-content: center;
@@ -1333,14 +1333,20 @@
 
         // Function to render vehicles based on filter
         function renderVehicles(filter) {
-          const filtered = filter === 'all' 
-            ? vehiclesData 
+          const filtered = filter === 'all'
+            ? vehiclesData
             : vehiclesData.filter(v => v.type === filter);
 
           vehicleGrid.innerHTML = filtered.map(vehicle => {
             // Check if vehicle has variants
             const variants = vehicle.variants || [{ seats: vehicle.seats, price: vehicle.price }];
-            const minBookingKm = Number(vehicle.minBookingKm) || 40;
+            const minimumRunningCostByType = {
+              Sedan: 2500,
+              MPV: 3500,
+              SUV: 4000,
+              Coach: 6000
+            };
+            const minimumRunningCost = minimumRunningCostByType[vehicle.type] || 2500;
 
             return `
       <div class="v-card">
@@ -1394,7 +1400,7 @@
               <button class="btn-info" type="button" onclick="toggleInfoNote(event, this)">
                 <span class="material-symbols-outlined">info</span>
               </button>
-              <div class="info-note">Per km rate applies for minimum ${minBookingKm} km booking.</div>
+              <div class="info-note">Minimum running cost: ₹${minimumRunningCost}.</div>
             </div>
           </div>
         </div>
