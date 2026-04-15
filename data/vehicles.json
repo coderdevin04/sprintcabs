@@ -12,7 +12,7 @@
       "minBookingKm": 40,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Dzire.jpg",
+      "photo": "photos/Dzire.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -27,7 +27,7 @@
       "minBookingKm": 45,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Etios.jpg",
+      "photo": "photos/Etios.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -42,7 +42,7 @@
       "minBookingKm": 50,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Ciaz.jpg",
+      "photo": "photos/Ciaz.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -57,7 +57,7 @@
       "minBookingKm": 40,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Aura.jpg",
+      "photo": "photos/Aura.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -72,7 +72,7 @@
       "minBookingKm": 60,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Ertiga.jpg",
+      "photo": "photos/Ertiga.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -87,7 +87,7 @@
       "minBookingKm": 70,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Innova.jpg",
+      "photo": "photos/Innova.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -102,7 +102,7 @@
       "minBookingKm": 80,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Crysta.jpg",
+      "photo": "photos/Crysta.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -117,7 +117,7 @@
       "minBookingKm": 100,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Hycross.jpg",
+      "photo": "photos/Hycross.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -132,7 +132,7 @@
       "minBookingKm": 70,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Kia.jpg",
+      "photo": "photos/Kia.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
@@ -144,7 +144,7 @@
       "tag": "",
       "tagType": "",
       "minBookingKm": 120,
-      "photo": "photos/Tempo.jpg",
+      "photo": "photos/Tempo.webp",
       "seatIcon": "airline_seat_recline_normal",
       "variants": [
         {
@@ -176,7 +176,7 @@
       "minBookingKm": 150,
       "tag": "",
       "tagType": "",
-      "photo": "photos/Force.jpg",
+      "photo": "photos/Force.webp",
       "seatIcon": "airline_seat_recline_normal"
     },
     {
